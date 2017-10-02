@@ -12,4 +12,4 @@ These commands are to be run in the top level 'endlist' folder. Docker and docke
 
 `npm run docker-stop`: Stops the docker containers.
 
-`npm run docker-start-prod`: Starts the docker containers in production mode. The frontend is configured to be accessed from endlist.fun and the backend from api.endlist.fun.
+`npm run docker-prod`: Starts the docker containers in production mode. The frontend is configured to be accessed from endlist.fun and the backend from api.endlist.fun.
