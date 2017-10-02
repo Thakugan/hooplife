@@ -1,0 +1,11 @@
+*.pem
+
+# Frontend Stuff
+frontend/dist
+frontend/node_modules
+
+# Backend Stuff
+backend/vendor/
+backend/logs/*
+backend/logs/README.md
+backend/db/
