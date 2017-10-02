@@ -1,0 +1,15 @@
+{
+  "name": "endlist",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "config": {
+    "docker_file": "./config/dev/docker-compose.yml",
+    "docker_file_prod": "./config/prod/docker-compose.yml"
+  },
+  "scripts": {
+    "docker-start": "bash ./bin/up.sh $npm_package_config_docker_file",
+    "docker-stop": "bash ./bin/stop.sh $npm_package_config_docker_file",
+    "docker-prod": "bash ./bin/prod.sh $npm_package_config_docker_file_prod"
+  }
+}
