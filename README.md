@@ -5,6 +5,8 @@ SMU Fall 2017 DB/GUI Project. A collaborative playlist web application.
 ## Dev Envrionment
 IMPORTANT: Make sure to run `npm install` and `ng build --prod` in the frontend folder before doing anything
 
+Also, the files error.log and access.log need to be created in /backend/logs/apache2
+
 ### Docker Scripts
 These commands are to be run in the top level 'endlist' folder. Docker and docker-compose must be installed for this to work
 
