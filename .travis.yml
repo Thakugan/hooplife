@@ -1,6 +1,6 @@
 language: node_js
-  node_js:
-    - "6.9.4"
+node_js:
+  - "6.9.4"
 
 branches:
   only:
@@ -11,17 +11,6 @@ cache:
     - node_modules
     - frontend/node_modules
     - backend/vendor
-
-matrix:
-  include:
-    - language: php
-      php: 7.0
-      before_script:
-        - cd backend
-      script:
-        - composer install
-      afer_script:
-        - cd ../
-
+    
 script:
   - grunt
