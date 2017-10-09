@@ -3,6 +3,7 @@
 # Frontend Stuff
 frontend/dist
 frontend/node_modules
+frontend/*.sketch
 
 # Backend Stuff
 backend/vendor/

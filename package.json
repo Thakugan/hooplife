@@ -11,5 +11,11 @@
     "docker-start": "bash ./bin/up.sh $npm_package_config_docker_file",
     "docker-stop": "bash ./bin/stop.sh $npm_package_config_docker_file",
     "docker-prod": "bash ./bin/prod.sh $npm_package_config_docker_file_prod"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-phpunit": "^0.3.6",
+    "grunt-run": "^0.8.0"
   }
 }
