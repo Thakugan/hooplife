@@ -12,7 +12,7 @@ module.exports = function(grunt) {
           exec: 'npm run test-ci',
         }
       },
-      node-install: {
+      nodeInstall: {
         options: {
           cwd: './frontend'
         },
@@ -20,7 +20,7 @@ module.exports = function(grunt) {
           exec: 'npm install',
         }
       },
-      php-install: {
+      phpInstall: {
         options: {
           cwd: './backend'
         },
@@ -44,5 +44,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-phpunit');
 
   // Default task(s).
-  grunt.registerTask('default', ['run:install', 'run:jest', 'phpunit']);
+  grunt.registerTask('default', ['run:nodeInstall', 'run:phpInstall', 'run:jest', 'phpunit']);
 };
