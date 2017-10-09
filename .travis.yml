@@ -11,6 +11,10 @@ cache:
     - node_modules
     - frontend/node_modules
     - backend/vendor
-    
+
+
+before_script:
+  - npm run install
+
 script:
-  - grunt
+  - npm run test
