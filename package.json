@@ -18,11 +18,5 @@
     "test-frontend": "cd frontend && npm run test-ci",
     "test-backend": "cd backend && vendor/bin/phpunit tests",
     "test": "npm run test-frontend && npm run test-backend"
-  },
-  "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-cli": "^1.2.0",
-    "grunt-phpunit": "^0.3.6",
-    "grunt-run": "^0.8.0"
   }
 }
