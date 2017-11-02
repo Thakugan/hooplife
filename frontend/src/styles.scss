@@ -1,4 +1,15 @@
-@import "scss/variables";
-@import "scss/mixins";
-@import "scss/utilities";
-@import "scss/reboot";
+html {
+  box-sizing: border-box;
+  // background-color: #3C3C3C;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #494949;
+}
