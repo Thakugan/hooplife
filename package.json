@@ -8,10 +8,11 @@
     "docker_file_prod": "./config/prod/docker-compose.yml"
   },
   "scripts": {
-    "setup": "cd backend/logs/apache2 && touch error.log && touch access.log",
+    "setup": "cd backend && mkdir logs && mkdir logs/apache2 && cd logs/apache2 && touch error.log && touch access.log",
     "docker-start": "bash ./bin/up.sh $npm_package_config_docker_file",
     "docker-stop": "bash ./bin/stop.sh $npm_package_config_docker_file",
     "docker-prod": "bash ./bin/prod.sh $npm_package_config_docker_file_prod",
+    "docker-stop-prod": "docker-compose -f $npm_package_config_docker_file_prod stop",
     "install-frontend": "cd frontend && npm install",
     "install-backend": "cd backend && composer install",
     "install": "npm run install-frontend && npm run install-backend",
