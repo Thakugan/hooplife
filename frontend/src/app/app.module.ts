@@ -2,6 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+// Mock API Stuff
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './_services/in-memory-data.service';
+
 import { AppRoutingModule } from './_modules/app-routing/app-routing.module';
 import { UserModule } from './_modules/user/user.module';
 

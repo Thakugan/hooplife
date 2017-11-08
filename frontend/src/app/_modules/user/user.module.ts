@@ -5,7 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from '../../_modules/app-routing/app-routing.module';
 
-import { UserService } from '../../_services/user.service'
+import { AuthService } from '../../_services/auth.service';
+import { RegistrationService } from '../../_services/registration.service';
 
 import { LoginComponent } from '../../components/login/login.component';
 import { RegistrationComponent } from '../../components/registration/registration.component';
@@ -21,6 +22,9 @@ import { RegistrationComponent } from '../../components/registration/registratio
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [UserService]
+  providers: [
+    AuthService,
+    RegistrationService
+  ]
 })
 export class UserModule { }

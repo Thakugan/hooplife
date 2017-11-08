@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { catchError, map, tap } from 'rxjs/operators';
+
 import 'rxjs/add/operator/retry';
 
 import { environment } from '../../environments/environment';
 
 import { User } from '../_models/user';
 import { Login } from '../_models/login';
-import { USERS } from '../_mock/mock-users';
 
 @Injectable()
 export class RegistrationService {
