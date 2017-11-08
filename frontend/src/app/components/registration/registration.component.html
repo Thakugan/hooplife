@@ -1,6 +1,6 @@
 <div class="registration-page">
   <div class="container jumbotron text-center">
-    <h1 class="display-3">Hooplife</h1>
+    <h1 class="display-3">hooplife</h1>
   </div>
 
   <div class="container registration text-center mt-5">
@@ -20,17 +20,17 @@
       </div>
       <div class="form-row mt-3">
         <span class="col">
-          <input #email class="form-control" id="email" name="email" placeholder="Email" required>
+          <input #email class="form-control" type="email" id="email" name="email" placeholder="Email" required>
         </span>
       </div>
       <div class="form-row mt-3">
         <span class="col">
-          <input #password class="form-control" id="password" name="password" placeholder="Password" required>
+          <input #password class="form-control" type="password" id="password" name="password" placeholder="Password" required>
         </span>
       </div>
       <div class="form-row mt-3">
         <span class="col">
-          <input #confirmPassword class="form-control" id="confirm-password" name="confirmPassword" placeholder="Confirm Password" required>
+          <input #confirmPassword class="form-control" type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm Password" required>
         </span>
       </div>
       <button type="submit" class="btn mt-3" [disabled]="!registrationForm.form.valid">Create Account</button>
