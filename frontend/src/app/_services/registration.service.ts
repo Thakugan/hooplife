@@ -23,8 +23,7 @@ export class RegistrationService {
       "lastName": name,
       "username": username,
       "email": email,
-      "password": password,
-      "dateCreated": new Date()
+      "password": password
     })
     .retry(1)
   }

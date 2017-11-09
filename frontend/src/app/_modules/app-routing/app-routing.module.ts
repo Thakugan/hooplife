@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'dashboard/chat', pathMatch: 'full' },
-      { path: 'chat', component: LocationDetailsPageComponent }
+      { path: 'chat', component: LocationDetailsPageComponent, canActivate: [AuthGuard] }
     ]
   },
   { path: '**', component: DashboardComponent }
