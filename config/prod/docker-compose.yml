@@ -25,3 +25,5 @@ services:
       - 3306:3306
     volumes:
       - ../../backend/db:/var/lib/mysql
+    env_file:
+      - prod_variables.env
