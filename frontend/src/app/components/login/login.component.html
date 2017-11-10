@@ -4,15 +4,15 @@
   </div>
 
   <div class="container registration text-center mt-5">
-    <form #registrationForm="ngForm" class="text-center mb-3">
+    <form #registrationForm="ngForm" class="text-center mb-3" onsubmit="submit()">
       <div class="form-row mt-3">
         <span class="col">
-          <input #username class="form-control" id="username" name="username" placeholder="Username" required>
+          <input #username class="form-control" id="username" name="username" [(ngModel)]="auth.username" placeholder="Username" required>
         </span>
       </div>
       <div class="form-row mt-3">
         <span class="col">
-          <input #password class="form-control" type="password" id="password" name="password" placeholder="Password" required>
+          <input #password class="form-control" type="password" id="password" name="password" [(ngModel)]="auth.password" placeholder="Password" required>
         </span>
       </div>
       <button type="submit" class="btn mt-4" [disabled]="!registrationForm.form.valid">Login</button>

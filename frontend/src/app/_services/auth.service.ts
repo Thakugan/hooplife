@@ -15,13 +15,13 @@ export class AuthService {
 
   private apiUrl = environment.url;
   currentUser: User = new User();
+  token: string;
 
   constructor(private http: HttpClient) {
-    this.authenticateHttp();
   }
 
-  login(username: string, password: string): Observable<Login> {
-    return this.http.post<Login>(`${this.apiUrl}/login`,
+  login(username: string, password: string): Observable<string> {
+    return this.http.post<string>(`${this.apiUrl}/login`,
     {
       "username": username,
       "password": password
@@ -34,54 +34,20 @@ export class AuthService {
     localStorage.removeItem('auth');
   }
 
-  // Authenticate an existing JWT
-  authenticate(): Observable<boolean> {
-    return this.http.post<boolean>(`${this.apiUrl}/authenticate`,
-    { },
-    {
-      headers: new HttpHeaders().set('Authorization', this.getJwt()),
-    })
-    .retry(1)
+  /** GET user by username. Will 404 if id not found */
+  getUser(username: string): Observable<User> {
+    const url = `${this.apiUrl}/${username}`;
+    return this.http.get<User>(url).pipe(
+    );
   }
 
   getJwt() {
     if(localStorage.getItem('auth') == null) {
       return "";
     } else {
-      var storedAuth: Login = JSON.parse(localStorage.getItem('auth'));
-      return storedAuth.token;
+      var token: string = JSON.parse(localStorage.getItem('auth'));
+      return token;
     }
-  }
-
-  getUser() {
-    if(localStorage.getItem('auth') == null) {
-      return new User();
-    } else {
-      var storedAuth: Login = JSON.parse(localStorage.getItem('auth'));
-      return storedAuth.user;
-    }
-  }
-
-  authenticateHttp() {
-    this.authenticate().subscribe(
-      (responseBody) => {
-        // If user is authenticated then populate user data
-        if(responseBody['authenticated'] === true) {
-          this.currentUser = this.getUser();
-        } else {
-          this.logout();
-        }
-      },
-      (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          // A client-side or network error occurred. Handle it accordingly.
-          console.log('Error: POST request to authenticate failed:', err.error.message);
-        } else {
-          // The backend returned an unsuccessful response code.
-          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-        }
-      }
-    )
   }
 
 }
