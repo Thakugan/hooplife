@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserPublic } from '../../_models/userPublic'
+import { User } from '../../_models/user'
 import { Comment } from '../../_models/comment';
 
 @Component({
@@ -16,7 +16,7 @@ export class UserPublicComponent{
 	private hasRated: boolean = false;
 	private newComment: Comment = new Comment();
 
-	public user: UserPublic;
+	public user: User;
 
 	constructor(){
 
@@ -35,10 +35,9 @@ export class UserPublicComponent{
 				{ userName: 'Lebron James', date: new Date(), rating: 5, commentText: 'Way better than me. I love him.', showRating: true },
 				{ userName: 'Michael Jordan', date: new Date(), rating: 5, commentText: 'This boi can play', showRating: false },
 				{ userName: 'Shaq', date: new Date(), rating: 5, commentText: 'I want to father his children', showRating: true }
-			]
+			],
+			dateCreated: new Date()
 		}
-
-		console.log(this.user.username);
 
 	}
 

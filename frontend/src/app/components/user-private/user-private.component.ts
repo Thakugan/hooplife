@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserPublic } from '../../_models/userPublic';
+import { User } from '../../_models/user';
 
 @Component({
   	selector: 'app-user-private',
@@ -10,7 +10,7 @@ import { UserPublic } from '../../_models/userPublic';
 export class UserPrivateComponent {
 
 	private displayComments: boolean = false;
-	public user: UserPublic;
+	public user: User;
 
 	private newUsername: string;
 	private newEmail: string;
@@ -32,7 +32,8 @@ export class UserPrivateComponent {
 				{ userName: 'Lebron James', date: new Date(), rating: 5, commentText: 'Way better than me. I love him.', showRating: true },
 				{ userName: 'Michael Jordan', date: new Date(), rating: 5, commentText: 'This boi can play', showRating: false },
 				{ userName: 'Shaq', date: new Date(), rating: 5, commentText: 'I want to father his children', showRating: true }
-			]
+			],
+			dateCreated: new Date()
 		};
 
 	}
