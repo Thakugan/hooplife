@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocationDetailsComponent } from '../../components/location-details/location-details.component'
 
 @Component({
   selector: 'app-location-details-page',

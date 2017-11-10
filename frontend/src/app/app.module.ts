@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 // Mock API Stuff
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -14,6 +15,13 @@ import { LocationDetailsComponent } from './components/location-details/location
 import { LocationDetailsPageComponent } from './pages/location-details-page/location-details-page.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { RatingComponent } from './components/rating/rating.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { LocationSubmitComponent } from './components/location-submit/location-submit.component';
+import { LocationSubmitPageComponent } from './pages/location-submit-page/location-submit-page.component';
+import { UserPageComponent } from './pages/user-page/user-page.component';
+import { UserPrivateComponent } from './components/user-private/user-private.component';
+import { UserPublicComponent } from './components/user-public/user-public.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +29,21 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     LocationDetailsComponent,
     LocationDetailsPageComponent,
     DashboardComponent,
-    NavigationComponent
+    NavigationComponent,
+    RatingComponent,
+    CommentComponent,
+    LocationSubmitComponent,
+    LocationSubmitPageComponent,
+    UserPrivateComponent,
+    UserPublicComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,
     RouterModule,
     AppRoutingModule,
-    UserModule
+    UserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
