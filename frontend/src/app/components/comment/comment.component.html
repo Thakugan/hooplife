@@ -1,0 +1,11 @@
+<div class="card mb-3">
+	<div class="card-header">
+		{{comment.userName}} {{comment.date.getDate().toString() + '/' + (comment.date.getMonth() + 1).toString()}}
+		<div *ngIf="comment.showRating">
+			<rating [ratingValue]="comment.rating"></rating>
+		</div>
+	</div>
+	<div class="card-body">
+		<p>{{comment.commentText}}</p>
+	</div>
+</div>
