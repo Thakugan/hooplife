@@ -1,3 +1,10 @@
+import { Comment } from './comment';
+
 export class Location {
-  // TODO Add model variables
+	name: string;
+	photoName: string;
+	address: string;
+	description: string;
+	comments: Comment[];
+	rating: number;
 }

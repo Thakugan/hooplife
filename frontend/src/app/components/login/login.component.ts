@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   submit() {
     localStorage.setItem('auth', JSON.stringify(this.auth));
+    this.router.navigate(['/dashboard']);
   }
 
 }
