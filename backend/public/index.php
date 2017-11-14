@@ -26,7 +26,7 @@ require __DIR__ . '/../src/middleware.php';
 // Register routes -------------------------------------------------------------
 // IMPORTANT: Require dynamic routes after static ones
 require __DIR__ . '/../src/routes.php';
-//require __DIR__ . '/../src/registration.php';
+require __DIR__ . '/../src/registration.php';
 
 
 // Add dynamic ones below this line --------------------------------------------
