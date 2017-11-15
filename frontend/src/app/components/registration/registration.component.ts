@@ -15,4 +15,8 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
   }
 
+  register() {
+    alert('register');
+  }
+
 }

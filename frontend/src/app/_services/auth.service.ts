@@ -20,6 +20,12 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
+  // Create a new user in the database
+  createUser(firstName: string, lastName: string, username: string,
+  	email: string, password: string) {
+
+    }
+
   login(username: string, password: string): Observable<string> {
     return this.http.post<string>(`${this.apiUrl}/login`,
     {
