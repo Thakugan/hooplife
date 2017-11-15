@@ -1,4 +1,5 @@
 <?php
+header('Content-type: application/json');
 
 use Slim\Http\Request;
 use Slim\Http\Response;
