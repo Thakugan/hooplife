@@ -4,10 +4,6 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
-// Mock API Stuff
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './_services/in-memory-data.service';
-
 import { AppRoutingModule } from './_modules/app-routing/app-routing.module';
 import { UserModule } from './_modules/user/user.module';
 
@@ -42,12 +38,6 @@ import { UserPublicComponent } from './components/user-public/user-public.compon
   imports: [
     BrowserModule,
     HttpClientModule,
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
     RouterModule,
     AppRoutingModule,
     UserModule,
