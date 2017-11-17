@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.router.navigate(['./chat']);
+  	
   }
 
 }

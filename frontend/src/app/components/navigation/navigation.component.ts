@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { RouterLink } from '@angular/router';
 import { Page } from '../../_models/page';
 
 @Component({
@@ -11,19 +11,19 @@ export class NavigationComponent implements OnInit {
   pages: Page[] = [
     {
       "name": "profile",
-      "url": "/profile"
+      "url": "user"
     },
     {
       "name": "games",
-      "url": "/games"
+      "url": "games"
     },
     {
       "name": "chat",
-      "url": "/chat"
+      "url": "chat"
     },
     {
       "name": "add a location",
-      "url": "/add-loc"
+      "url": "locationSubmit"
     }
   ]
 
