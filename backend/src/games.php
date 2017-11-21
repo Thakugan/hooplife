@@ -9,9 +9,9 @@ $app->get('/games', function($request, $response, array $args){
 
   $pdo = $this->db->prepare("SELECT * FROM games");
   $pdo->execute();
-  $games = $pdo->fetchAll();
-  
-  return $this->response->withJson($games);
+  $games = $pdo->fetchAll(); 
+	return $this->response->withJson($games);
+
 });
 
 
