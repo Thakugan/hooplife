@@ -29,6 +29,12 @@ require __DIR__ . '/../src/middleware.php';
 require __DIR__ . '/../src/login.php';
 require __DIR__ . '/../src/registration.php';
 require __DIR__ . '/../src/games.php';
+require __DIR__ . '/../src/profileGet.php';
+require __DIR__ . '/../src/game_detail.php';
+require __DIR__ . '/../src/delete_game.php';
+require __DIR__ . '/../src/post_location.php';
+require __DIR__ . '/../src/get_location.php';
+
 
 // Add dynamic ones below this line --------------------------------------------
 
