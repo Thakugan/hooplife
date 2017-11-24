@@ -51,9 +51,7 @@ $app->post('/login', function (Request $request, Response $response, array $args
 }
    else {
 	//session_start();
-	$payload = [
-              'username' => $username,     // User name
-          ];
+	  $payload = [  'username' => $username,    ];
           $token = JWT::encode($payload, $_SERVER['SESSION_PASS']);
           $json = json_encode(array( "jwt" => $token  ));
           $stmt = $pdo->prepare('UPDATE users SET last_updated=CURRENT_TIMESTAMP WHERE username=:username');

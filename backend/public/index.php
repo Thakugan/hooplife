@@ -29,6 +29,18 @@ require __DIR__ . '/../src/middleware.php';
 require __DIR__ . '/../src/login.php';
 require __DIR__ . '/../src/registration.php';
 require __DIR__ . '/../src/games.php';
+<<<<<<< Updated upstream
+=======
+require __DIR__ . '/../src/profileGet.php';
+require __DIR__ . '/../src/game_detail.php';
+require __DIR__ . '/../src/delete_game.php';
+require __DIR__ . '/../src/post_location.php';
+require __DIR__ . '/../src/get_location.php';
+require __DIR__ . '/../src/rsvp.php';
+require __DIR__ . '/../src/users.php';
+require __DIR__ . '/../src/app_location.php';
+require __DIR__ . '/../src/pofile-update.php';
+>>>>>>> Stashed changes
 
 // Add dynamic ones below this line --------------------------------------------
 
