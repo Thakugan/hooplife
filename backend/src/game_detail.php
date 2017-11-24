@@ -46,5 +46,6 @@ $app->put('/game-detail/{GameID}', function(Request $request, Response $response
   $pdo->bindParam("date_of_game", $input["date_of_game"]);
   $pdo->execute();
   $input['GameID'] = $args['GameID'];
+
         return $this->response->withJson($input);
 });
