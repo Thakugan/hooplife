@@ -10,7 +10,16 @@ $app->get('/game-detail/{id}', function(Request $request, Response $response, ar
   $pdo->bindParam("id", $args["id"]);
   $pdo->execute();
   $game = $pdo->fetchAll();
-	return $this->response->withJson($game);
+
+  if (!$game)
+        {
+        return $response->withStatus(404);
+}
+   else {
+
+        return $this->response->withJson($game);
+}
+
 });
 
 // Submit a new game
