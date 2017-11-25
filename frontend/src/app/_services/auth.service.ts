@@ -3,7 +3,7 @@ includes jwt operations for user authentication, working in conjunction with
 the authentication guard. */
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Response } from '@angular/http';
 import { Router } from '@angular/router';
 
@@ -31,10 +31,10 @@ export class AuthService {
   ) { }
 
   /** POST: add a new user to the server */
-  addUser (user: User): Observable<Response> {
+  addUser (user: User): Observable<HttpResponse<any>> {
     const url = `${this.apiUrl}/registration`;
     console.log(url);
-    return this.http.post<User>(this.apiUrl,
+    return this.http.post<Response>(this.apiUrl,
       {
         username: user.username,
         first_name: user.firstName,
@@ -47,9 +47,9 @@ export class AuthService {
     );
   }
 
-  login(login: Login): Observable<Response> {
+  login(login: Login): Observable<HttpResponse<any>> {
     const url = `${this.apiUrl}/login`;
-    return this.http.post<Login>(url,
+    return this.http.post<Response>(url,
       {
         username: login.username,
         password: login.password

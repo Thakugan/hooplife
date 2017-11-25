@@ -18,7 +18,7 @@ export class LocationDetailsComponent implements OnInit {
     public username: string = "Jack";
     public newComment: Comment = new Comment();
 
-  	constructor() { 
+  	constructor() {
   		this.location = {
   			name: 'Hoopland',
   			photoName: 'bball.jpg',
@@ -35,7 +35,7 @@ export class LocationDetailsComponent implements OnInit {
       this.displayComments = false;
   	}
 
-    private addComment() {
+    addComment() {
       this.newComment.userName = this.username;
       this.newComment.date = new Date();
 
@@ -44,7 +44,7 @@ export class LocationDetailsComponent implements OnInit {
       this.hasCommented = true;
     }
 
-    private processRating(num: number){
+    processRating(num: number){
       this.newComment.rating = num;
       this.hasRated = true;
     }

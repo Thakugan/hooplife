@@ -8,9 +8,9 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 export class RatingComponent {
 
-	private stars: number;
-	private userHasRated: boolean;
-	private clickStars: boolean;
+	stars: number;
+	userHasRated: boolean;
+	clickStars: boolean;
 
 	@Input() public ratingValue: number;
 	@Output() public onRated = new EventEmitter<number>();

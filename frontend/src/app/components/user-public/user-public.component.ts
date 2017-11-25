@@ -10,11 +10,11 @@ import { Comment } from '../../_models/comment';
 
 export class UserPublicComponent{
 
-	private displayComments: boolean = false;
-	private currentUser: string = "Steph Curry"
-	private hasCommented: boolean = false;
-	private hasRated: boolean = false;
-	private newComment: Comment = new Comment();
+	displayComments: boolean = false;
+	currentUser: string = "Steph Curry"
+	hasCommented: boolean = false;
+	hasRated: boolean = false;
+	newComment: Comment = new Comment();
 
 	public user: User;
 
@@ -42,7 +42,7 @@ export class UserPublicComponent{
 
 	}
 
-	private addComment() {
+	addComment() {
       this.newComment.userName = this.currentUser;
       this.newComment.date = new Date();
 
@@ -51,7 +51,7 @@ export class UserPublicComponent{
       this.hasCommented = true;
     }
 
-    private processRating(num: number){
+    processRating(num: number){
       this.newComment.rating = num;
       this.hasRated = true;
     }

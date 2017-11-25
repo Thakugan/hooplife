@@ -9,11 +9,11 @@ import { User } from '../../_models/user';
 
 export class UserPrivateComponent {
 
-	private displayComments: boolean = false;
+	displayComments: boolean = false;
 	public user: User;
 
-	private newUsername: string;
-	private newEmail: string;
+	newUsername: string;
+	newEmail: string;
 
 	constructor(){
 
@@ -39,7 +39,7 @@ export class UserPrivateComponent {
 
 	}
 
-	private updateUser(){
+	updateUser(){
 		this.user.username = this.newUsername;
 		this.user.email = this.newEmail;
 	}
