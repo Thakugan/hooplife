@@ -16,22 +16,33 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
   }
 
   submit() {
-    var status;
     this.authService.login(this.auth).subscribe(
-      (response) => { status = response.status }
+      res => {
+        this.checkAuth(res.status);
+      },
+      err => {
+        this.snackBar.open('Login failed, please try again', '', {
+          duration: 5000
+        });
+      }
     );
+  }
 
+  checkAuth(status) {
     if(status == 200) {
       localStorage.setItem('auth', this.authService.getJWT({user: this.auth.username}));
     } else {
-      alert('Login failed');
+      this.snackBar.open('Login failed, please try again', '', {
+        duration: 5000
+      });
       return;
     }
 

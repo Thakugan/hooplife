@@ -17,9 +17,7 @@ import { environment } from '../../environments/environment';
 import { User } from '../_models/user';
 import { Login } from '../_models/login';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+const headers =  new HttpHeaders({ 'Content-Type': 'application/json' });
 
 @Injectable()
 export class AuthService {
@@ -34,27 +32,30 @@ export class AuthService {
 
   /** POST: add a new user to the server */
   addUser (user: User): Observable<Response> {
-    const url = `${this.apiUrl}/register`;
+    const url = `${this.apiUrl}/registration`;
     console.log(url);
     return this.http.post<User>(this.apiUrl,
       {
         username: user.username,
-        firstName: user.firstName,
-        lastName: user.lastName,
+        first_name: user.firstName,
+        last_lame: user.lastName,
         email: user.email,
         password: user.password
       },
-      httpOptions).pipe(
-      tap((user: User) => console.log(`added user w/ username=${user.username}`)),
-      catchError(this.handleError<User>('addUser'))
+      {observe: 'response'}).pipe(
+      tap(res => console.log(`added user w/ username=${user.username}`))
     );
   }
 
   login(login: Login): Observable<Response> {
     const url = `${this.apiUrl}/login`;
-    return this.http.get<Login>(url, login).pipe(
-      tap(login => console.log(`check login`)),
-      catchError(this.handleError<string>('login'))
+    return this.http.post<Login>(url,
+      {
+        username: login.username,
+        password: login.password
+      },
+      {observe: 'response'}).pipe(
+      tap(login => console.log(`check login`))
     );
   }
 
@@ -67,14 +68,4 @@ export class AuthService {
     localStorage.removeItem('auth');
     this.router.navigate(['/login']);
   }
-
-
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.log(`${operation} failed: ${error.message}`);
-
-      return of(result as T);
-    };
-  }
-
 }

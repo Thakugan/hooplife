@@ -4,7 +4,7 @@
   </div>
 
   <div class="container registration text-center mt-5">
-    <form #registrationForm="ngForm" class="text-center mb-3" (ngSubmit)="register()">
+    <form #registrationForm="ngForm" class="text-center mb-3" (ngSubmit)="submit()">
       <div class="form-row">
         <span class="col">
           <input #firstName class="form-control" id="first-name" name="firstName" [(ngModel)]="tempUser.firstName" placeholder="First Name" required>

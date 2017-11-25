@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 import { AuthService } from '../../_services/auth.service';
 
@@ -18,32 +19,44 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
   }
 
-  register() {
+  submit() {
     if(this.tempUser.password != this.passConfirmation) {
-      alert("Passwords do not match. Try again.");
+      this.snackBar.open('Passwords do not match, please try again', '', {
+        duration: 5000
+      });
       return;
     }
 
-    var status;
     this.authService.addUser(this.tempUser).subscribe(
-      (response) => { status = response.status }
+      res => {
+        this.checkRegistration(res.status);
+      },
+      err => {
+        this.snackBar.open('Registration failed, please try again', '', {
+          duration: 5000
+        });
+      }
     );
+  }
 
+  checkRegistration(status) {
     if(status == 200) {
       localStorage.setItem('auth', this.authService.getJWT({user: this.tempUser.username}));
     } else {
-      alert('User could not be created');
+      this.snackBar.open('Registration failed, please try again', '', {
+        duration: 5000
+      });
       return;
     }
 
     this.tempUser = new User();
     this.router.navigate(['/dashboard']);
   }
-
 }
