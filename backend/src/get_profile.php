@@ -10,7 +10,7 @@ $app->get('/profile/{userId}', function (Request $request, Response $response, a
 	
         //Query users table for data on current user based on userID passed in
 	//Query results will tie to $targetUser
-	$userQuery = $db->prepare("SELECT username, first_name, last_name, num_of_games_played, email, date_joined FROM users WHERE userid = :uid");
+	$userQuery = $db->prepare("SELECT username, first_name, last_name, num_of_games_played, email, date_joined, last_updated, year, ranking, rating FROM users WHERE userid = :uid");
 	$userQuery->bindParam("uid", $args['userId']);
 	$userQuery->execute();
 	$targetUser = $userQuery->fetchObject();
