@@ -10,9 +10,14 @@
   color: white;
 }
 
-.nav-link {
+.nav-link, button {
   font-size: 1rem;
   font-weight: 300;
   color: white;
   padding: 0;
+}
+
+button {
+  border: none;
+  padding: .625rem;
 }

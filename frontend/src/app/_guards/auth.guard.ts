@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 
+import { KJUR } from 'jsrsasign';
+
 @Injectable()
 export class AuthGuard implements CanActivate {
 
   constructor(private router: Router) { }
 
   canActivate() {
-    if (localStorage.getItem('auth')) {
+    var jwt = localStorage.getItem('auth');
+    var isValid = KJUR.jws.JWS.verify(jwt, {utf8: "secret"}, ["HS256"]);
+    if (isValid) {
       // Logged in so return true
       return true;
     }

@@ -31,6 +31,7 @@ export class UserPublicComponent{
 			wins: 384,
 			losses: 1,
 			email: "Cragsdale@smu.edu",
+      password: "**",
 			comments: [
 				{ userName: 'Lebron James', date: new Date(), rating: 5, commentText: 'Way better than me. I love him.', showRating: true },
 				{ userName: 'Michael Jordan', date: new Date(), rating: 5, commentText: 'This boi can play', showRating: false },

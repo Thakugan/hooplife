@@ -12,7 +12,7 @@ import { UserPageComponent } from '../../pages/user-page/user-page.component';
 import { LocationSubmitPageComponent } from '../../pages/location-submit-page/location-submit-page.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard/chat', pathMatch: 'full' },
   { path: 'registration', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
