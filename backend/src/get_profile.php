@@ -14,14 +14,22 @@ $app->get('/profile/{userId}', function (Request $request, Response $response, a
 	$userQuery->bindParam("uid", $args['userId']);
 	$userQuery->execute();
 	$targetUser = $userQuery->fetchObject();
-	
-	//Fetch userid of current user to determine if user is viewing own page
+        $row = $userQuery->rowCount();
+
+  	 if (!$row)
+        {
+        return $response->withStatus(404);
+        }
+  	
+        //Fetch userid of current user to determine if user is viewing own page
 	//Attach viewingOwnPage boolean to targetUser object
 	//$sessionQuery = $db->prepare("SELECT userid FROM Sessions WHERE sessionid = :sid");
 	//$sessionQuery->bindParam("sid", $args['sessionId']);
 	//$sessionQuery->execute();
 	//if ($targetUser->userid === $sessionQuery->fetchObject()->userid) 
-		$targetUser->viewingOwnPage = true;
+	
+	//	$targetUser->viewingOwnPage = true;
+	
 	//else
 		//$targetUser->viewingOwnPage = false;
 	//Fetch comments on the user's page
@@ -31,14 +39,17 @@ $app->get('/profile/{userId}', function (Request $request, Response $response, a
 	$commentsQuery->bindParam("tid", $args['userId']);
 	$commentsQuery->execute();
 	$numOfComments = $commentsQuery->rowCount();
+	
 	if ($numOfComments > 0)
 		$targetUser->comments = $commentsQuery->fetchAll();
+	
 	//Format user information into json and send response
 	$jsonResponse = json_encode($targetUser);
 	$this->response->getBody()->write($jsonResponse);
 	
 
  	return $this->response;
+
 });
 
 

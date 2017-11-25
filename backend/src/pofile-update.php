@@ -17,16 +17,16 @@ $app->put('/profile-update/[{id}]', function(Request $request, Response $respons
   $year = $info['year'];
         $data = json_decode(file_get_contents("php://input"));
    //$input = $request->getParsedBody();
-   if (isset($data->first_name) || !empty($data->first_name)) {
+   if (!empty($data->first_name)) {
         $first_name = $data->first_name;
         }
-   if (isset($data->last_name)|| !empty($data->last_name)) {
+   if (!empty($data->last_name)) {
         $last_name = $data->last_name;
         }
-   if (isset($data->email)|| !empty($data->email)) {
+   if (!empty($data->email)) {
         $email = $data->email;
         }
-   if (isset($data->year)|| !empty($data->year)) {
+   if (!empty($data->year)) {
         $year = $data->year;
         }
    $sql = "UPDATE users SET first_name=:fn, last_name=:ln, email=:em, year=:yr WHERE userid=:id";
