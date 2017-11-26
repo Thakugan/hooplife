@@ -20,9 +20,9 @@ return [
 	        //DB cridentials
         'db' => [
             'host' => 'localhost',
-            'dbname' => 'hooplife',
+            'dbname' => 'hooplife_site',
             'user' => 'root',
-            'pass' => 'hooplife',
+            'pass' => 'hooplive',
           ],
     ],
 ];
