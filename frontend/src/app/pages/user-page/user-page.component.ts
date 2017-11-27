@@ -3,7 +3,7 @@ import { UserPublicComponent } from '../../components/user-public/user-public.co
 import { UserPrivateComponent } from '../../components/user-private/user-private.component'
 
 @Component({
-  selector: 'app-user-public-page',
+  selector: 'app-user-page',
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.css']
 })
