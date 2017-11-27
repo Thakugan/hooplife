@@ -12,6 +12,12 @@
         <span class="col">
           <input #lastName class="form-control" id="last-name" name="lastName" [(ngModel)]="tempUser.last_name" placeholder="Last Name" required>
         </span>
+        <span class="col">
+          <select #year class="form-control" id="grade-year" name="year" [(ngModel)]="tempUser.year" required>
+            <option value="" [disabled]="true" [selected]="true">Select Your Year</option>
+            <option *ngFor="let yr of ['Freshman','Sophomore','Junior','Senior','Grad Student','Alumni']" [ngValue]="yr">{{yr}}</option>
+          </select>
+        </span>
       </div>
       <div class="form-row mt-3">
         <span class="col">
