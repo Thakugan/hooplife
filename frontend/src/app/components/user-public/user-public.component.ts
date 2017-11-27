@@ -12,7 +12,7 @@ import { ProfileService } from '../../_services/profile.service';
 
 export class UserPublicComponent{
 
-	displayComments: boolean = false;
+	displayComments: boolean = true;
 	currentUser: string;
 	hasCommented: boolean = false;
 	hasRated: boolean = false;

@@ -7,7 +7,7 @@
 				</div>
 				<div class="col-md-8">
 					<h3 class="mt-3 lead username">{{user.username + '  (' + user.first_name + ' ' + user.last_name + ')'}}</h3>
-					<rating [ratingValue]="(user.rating ? user.rating : 0)"></rating>
+					<rating [ratingValue]="user.rating ? user.rating : 1"></rating>
 					<hr class="mr-3"/>
 					<p class="mr-3">Average User Rating: {{(user.rating ? user.rating + ' / 5' : 'N/A')}}</p>
 					<p class="mr-3">Year: {{user.year ? user.year : 'N/A'}}</p>

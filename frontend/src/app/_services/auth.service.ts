@@ -57,6 +57,19 @@ export class AuthService {
     );
   }
 
+  /* TODO POST: change password */
+  changePass(username: string, oldPass: string, newPass: string): Observable<HttpResponse<any>> {
+    const url = `${this.apiUrl}/change-password/${username}`;
+    return this.http.post<Response>(url,
+      {
+        old_password: oldPass,
+        new_password: newPass
+      },
+      {observe: 'response'}).pipe(
+      tap(login => console.log(`check login`))
+    );
+  }
+
   getJWT(payload) {
     var header = {alg: "HS256", typ: "JWT"};
     return KJUR.jws.JWS.sign("HS256", header, payload, {utf8: "secret"});

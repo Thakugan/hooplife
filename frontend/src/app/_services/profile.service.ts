@@ -34,6 +34,24 @@ export class ProfileService {
     );
   }
 
+  /** TODO GET: find all comments on a user's profile */
+  getUserComments (username: string): Observable<User> {
+    const url = `${this.apiUrl}/profile/${username}`;
+    console.log(url);
+    return this.http.get<User>(url).pipe(
+      tap(res => console.log(`found user w/ username=${username}`))
+    );
+  }
+
+  /** TODO POST: change username or email */
+  updateUser (username: string): Observable<User> {
+    const url = `${this.apiUrl}/profile/${username}`;
+    console.log(url);
+    return this.http.get<User>(url).pipe(
+      tap(res => console.log(`found user w/ username=${username}`))
+    );
+  }
+
   getCurrentUser(): string {
     var currentUser = KJUR.jws.JWS.parse(localStorage.getItem('auth')).payloadObj.user;
     return currentUser;
