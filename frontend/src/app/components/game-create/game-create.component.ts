@@ -28,7 +28,6 @@ export class GameCreateComponent implements OnInit {
   }
 
   createGame(){
-    this.game.time_of_game = this.hour + ':' + this.minute + ' ' + this.amORpm;
     this.game.creator_username = this.current_user_id;
   }
 

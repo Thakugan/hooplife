@@ -31,14 +31,14 @@ export class AuthService {
   /** POST: add a new user to the server */
   addUser (user: User, pass: string): Observable<HttpResponse<any>> {
     const url = `${this.apiUrl}/registration`;
-    return this.http.post<Response>(this.apiUrl,
+    return this.http.post<Response>(url,
       {
         username: user.username,
         first_name: user.first_name,
-        last_lame: user.last_name,
+        last_name: user.last_name,
         email: user.email,
-        password: pass,
-        year: user.year
+        year: user.year,
+        password: pass
       },
       {observe: 'response'}).pipe(
       tap(res => console.log(`added user w/ username=${user.username}`))

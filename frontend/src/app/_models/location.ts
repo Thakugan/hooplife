@@ -1,10 +1,9 @@
-import { Comment } from './comment';
-
 export class Location {
-	name: string;
-	photoName: string;
+	locationID: number;
+	picture_url: string;
 	address: string;
 	description: string;
-	comments: Comment[];
+	date_created: Date;
+	creator_username: string;
 	rating: number;
 }

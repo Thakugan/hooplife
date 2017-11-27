@@ -28,4 +28,12 @@ export class GameService {
       tap(res => console.log(`found games`))
     );
   }
+
+  /** GET: return specific game */
+  getGame (game_id: number): Observable<Game> {
+    const url = `${this.apiUrl}/game-detail/${game_id}`;
+    return this.http.get<Game>(url).pipe(
+      tap(res => console.log(`found games`))
+    );
+  }
 }

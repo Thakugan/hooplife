@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { Location } from '../../_models/location';
 
 @Component({
   selector: 'location-browser',
@@ -8,14 +11,22 @@ import { Component, Input, OnInit } from '@angular/core';
 
 export class LocationBrowserComponent implements OnInit {
 
-	constructor() {
+  @Input() locations: Location[];
+
+	constructor(
+    private router: Router
+  ) {
 	}
 
-  	ngOnInit() {
-  	}
+	ngOnInit() {
+	}
 
-  	private goToLocation(id: number){
-  		
-  	}
+  openSubmitLocationPage() {
+    this.router.navigate(['/dashboard/locationSubmit']);
+  }
+
+  goToLocation(id: number) {
+    this.router.navigate([`/dashboard/location/${id}`]);
+  }
 
 }
