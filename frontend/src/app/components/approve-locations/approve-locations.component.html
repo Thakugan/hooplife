@@ -1,0 +1,33 @@
+<div class="approve-locations">
+	<div class="card w-100">
+		<div class="card-header">
+			<h3 class="card-title">Pending Locations</h3>
+		</div>
+		<div class="card-body">
+			<div *ngIf="numOfLocations == 0">
+				<p>No pending locations</p>
+			</div>
+			<div *ngIf="numOfLocations > 0">
+				<div *ngFor="let location of locations">
+					<div class="card w-100">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-3">
+									<img class="img-fluid" src="..." alt="location image">
+								</div>
+								<div class="col-md-6">
+									<p></p>
+									<p></p>
+								</div>
+								<div class="col-md-3">
+									<button type="button" class="btn btn-success" (click)="approveLocation(location.id)">Approve</button>
+									<button type="button" class="btn btn-danger" (click)="denyLocation(location.id)">Deny</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

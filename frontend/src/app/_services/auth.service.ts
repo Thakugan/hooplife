@@ -37,7 +37,8 @@ export class AuthService {
         first_name: user.first_name,
         last_lame: user.last_name,
         email: user.email,
-        password: pass
+        password: pass,
+        year: user.year
       },
       {observe: 'response'}).pipe(
       tap(res => console.log(`added user w/ username=${user.username}`))
