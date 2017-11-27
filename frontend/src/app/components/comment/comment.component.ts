@@ -9,7 +9,6 @@ import { Comment } from '../../_models/comment';
 
 export class CommentComponent{
 
-	@Input()
-	public comment: Comment;
+	@Input() public comment: Comment;
 
 }

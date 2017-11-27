@@ -25,4 +25,4 @@ import { RegistrationComponent } from '../../components/registration/registratio
     AuthService
   ]
 })
-export class UserModule { }
+export class AuthenticationModule { }

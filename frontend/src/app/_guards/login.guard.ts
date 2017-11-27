@@ -4,7 +4,7 @@ import { Router, CanActivate } from '@angular/router';
 import { KJUR } from 'jsrsasign';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class LoginGuard implements CanActivate {
 
   constructor(private router: Router) { }
 
@@ -14,12 +14,12 @@ export class AuthGuard implements CanActivate {
       var isValid = KJUR.jws.JWS.verify(jwt, {utf8: "secret"}, ["HS256"]);
 
       if(isValid) {
+        this.router.navigate(['/dashboard']);
         return true;
       }
     }
 
-    // Not logged in so redirect to login page
-    this.router.navigate(['/login']);
-    return false;
+    // Not logged in so it's fine to stay on the login/registration page
+    return true;
   }
 }

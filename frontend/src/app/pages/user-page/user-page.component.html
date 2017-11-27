@@ -1,8 +1,13 @@
 <div class="userPage">
-	<div *ngIf="isPublic">
-		<app-user-public></app-user-public>
+	<div [hidden]="userFound" class="container">
+		<div class="jumbotron mt-4">
+			<h2 class="display-4">Oops, we couldn't find this user.</h2>
+		</div>
 	</div>
-	<div *ngIf="!isPublic">
-		<app-user-private></app-user-private>
+	<div [hidden]="!userFound || !isPublic">
+		<app-user-public [user]="user" [comments]="comments"></app-user-public>
+	</div>
+	<div [hidden]="!userFound || isPublic">
+		<app-user-private [user]="user" [comments]="comments"></app-user-private>
 	</div>
 </div>

@@ -4,44 +4,30 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './_modules/app-routing/app-routing.module';
-import { UserModule } from './_modules/user/user.module';
+import { SharedModule } from './_modules/shared/shared.module';
+import { AuthenticationModule } from './_modules/authentication/authentication.module';
+import { ProfileModule } from './_modules/profile/profile.module';
+import { GamesModule } from './_modules/games/games.module';
 
 import { AppComponent } from './app.component';
-import { LocationDetailsComponent } from './components/location-details/location-details.component';
-import { LocationDetailsPageComponent } from './pages/location-details-page/location-details-page.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { RatingComponent } from './components/rating/rating.component';
-import { CommentComponent } from './components/comment/comment.component';
-import { LocationSubmitComponent } from './components/location-submit/location-submit.component';
-import { LocationSubmitPageComponent } from './pages/location-submit-page/location-submit-page.component';
-import { UserPageComponent } from './pages/user-page/user-page.component';
-import { UserPrivateComponent } from './components/user-private/user-private.component';
-import { UserPublicComponent } from './components/user-public/user-public.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LocationDetailsComponent,
-    LocationDetailsPageComponent,
     DashboardComponent,
-    NavigationComponent,
-    RatingComponent,
-    CommentComponent,
-    LocationSubmitComponent,
-    LocationSubmitPageComponent,
-    UserPrivateComponent,
-    UserPublicComponent,
-    UserPageComponent
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     RouterModule,
-    AppRoutingModule,
-    UserModule,
-    FormsModule
+    HttpClientModule,
+    FormsModule,
+    SharedModule,
+    AuthenticationModule,
+    ProfileModule,
+    GamesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
