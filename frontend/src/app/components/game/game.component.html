@@ -1,0 +1,93 @@
+<div class="game-component">
+	<div class="row">
+		<div class="col-md-4">
+			<!-- Location Card -->
+			<div class="card">
+				<img class="card-img-top" src="{{location.imageUrl}}" alt="Location image">
+				<div class="card-body text-centered">
+					<h3>location.name</h3>
+					<rating [ratingValue]="{{5}}"></rating>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<!-- Game Info -->
+			<span>
+				<h2>{{game.name}}</h2>
+				<span *ngIf="isPlayer">
+					<button type="button" class="btn btn-primary" (click)="handlePlayer()">In the roster! (Click to remove yourself)</button>
+				</span>
+				<span *ngIf="!isPlayer">
+					<button type="button" class="btn btn-primary" (click)="handlePlayer()">Click to register to this game!</button>
+				</span>
+			</span>
+			<span>Minimum Rank: <rating [ratingValue]="{{3}}"></rating></span>
+			<hr />
+			<p>game.date</p>
+			<p>game.numOfPlayers</p>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#players-modal">View Players</button>
+		</div>
+	</div>
+	<div class="modal fade" id="players-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">List of Players</h5>
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="player-list" *ngIf="numOfPlayers > 0">
+						<div class="players" *ngFor="let player of players">
+							<div class="card w-100" (click)="visitPlayer(player.id)">
+								<div class="card-body">
+									<span>{{player.username}} <rating [ratingValue]="player.rating"></rating></span>
+								</div>
+							</div>	
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card mt-3">
+				<div class="card-body">
+					<div class="form-group">
+						<label for="commentInput">Comment</label>
+						<textarea class="form-control" id="commentInput" rows="3" required [(ngModel)]="newComment.commentText"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary" (click)="addComment()"> 
+						Submit
+					</button>
+				</div>
+			</div>	
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<!-- Comments -->
+			<div class="card mt-3 mb-3" id="comment-section">
+				<div class="card-header" id="commentHeader" (click)="displayComments=!displayComments">
+					<p class="text-center comments-indicator">Comments ({{game.comments.length}})</p>
+					<p class="text-center arrow-down"></p>
+				</div>
+
+				<div class="card-body pb-3" id="noCommentsDialog" *ngIf="game.comments.length < 1">
+					<p>Be the first to write a comment!</p>
+				</div>
+
+				<div class="card-body pb-3" id="CommentList" *ngIf="displayComments">
+					<div *ngFor="let com of game.comments">
+						<comment-block [comment]="com"></comment-block>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

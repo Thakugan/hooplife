@@ -1,0 +1,24 @@
+<div class="locationBrowser">
+
+	<h1>Locations</h1>
+
+	<div *ngFor="let loc of locations">
+
+		<div class="card w-100">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-4">
+						<img src="{{loc.url}}" alt="Location Image">
+					</div>
+					<div class="col-md-8">
+						<p>{{loc.name}}</p>
+						<p>{{loc.description}}</p>
+						<button type="button" class="btn btn-success" (click)="goToLocation(loc.id)">View Location</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
