@@ -38,7 +38,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="player-list" *ngIf="numOfPlayers > 0">
+					<div class="player-list" *ngIf="players.length > 0">
 						<div class="players" *ngFor="let player of players">
 							<div class="card w-100" (click)="visitPlayer(player.id)">
 								<div class="card-body">

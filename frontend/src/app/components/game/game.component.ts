@@ -15,7 +15,7 @@ import { RatingComponent } from '../rating/rating.component';
 
 export class GameComponent implements OnInit {
 
-	private displayComments: boolean = false;
+	displayComments: boolean = false;
 
   @Input() isPlayer: boolean;
 	@Input() game: Game;
@@ -24,7 +24,7 @@ export class GameComponent implements OnInit {
   @Input() comments: Comment[];
   @Input() location: Location;
 
-	private newComment: Comment = new Comment();
+  newComment: Comment = new Comment();
 
 	constructor() {
 

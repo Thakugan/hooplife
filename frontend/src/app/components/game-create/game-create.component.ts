@@ -10,12 +10,12 @@ import { Game } from '../../_models/game'
 
 export class GameCreateComponent implements OnInit {
 
-  private hasLocations: boolean = false;
-  private game: Game = new Game();
-  private hour: string;
-  private minute: string;
-  private amORpm: string;
-  private current_user_id: number;
+  hasLocations: boolean = false;
+  game: Game = new Game();
+  hour: string;
+  minute: string;
+  amORpm: string;
+  current_user_id: number;
 
 	constructor() {
 	}
