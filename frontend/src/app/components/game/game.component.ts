@@ -33,11 +33,11 @@ export class GameComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	private visitPlayer(id: number){
+	visitPlayer(id: number){
 
 	}
 
-	private addComment(){
+	addComment(){
 		this.newComment.userName = this.currUser.username;
 		this.newComment.date = new Date();
 		this.newComment.rating = 0;
@@ -46,7 +46,7 @@ export class GameComponent implements OnInit {
 
 	}
 
-  private handlePlayer(){
+  handlePlayer(){
     if(this.isPlayer){
 
     }
