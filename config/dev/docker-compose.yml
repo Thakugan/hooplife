@@ -27,4 +27,5 @@ services:
       - ../../backend/db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: pass
-      MYSQL_DATABASE: hooplife
+      MYSQL_DATABASE: hooplive
+      SESSION_PASS: I_want_an_A

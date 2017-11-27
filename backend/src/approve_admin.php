@@ -6,10 +6,10 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 //a user that is an admin can make another user admin
-$app->put('/setadmin[/{AdminID}[/{userid}]]', function($request, $response, $args){
+$app->get('/setadmin[/{AdminUsername}[/{username}]]', function($request, $response, $args){
   
-  $check = $this->db->prepare("SELECT *  FROM users where userid=:AdminID AND isAdmin='1'");
-  $check->bindParam("AdminID", $args['AdminID']);
+  $check = $this->db->prepare("SELECT *  FROM users where username=:AdminUsername AND isAdmin='1'");
+  $check->bindParam("AdminUsername", $args['AdminUsername']);
   $check->execute();
   $row = $check->rowCount();
  
@@ -19,8 +19,8 @@ $app->put('/setadmin[/{AdminID}[/{userid}]]', function($request, $response, $arg
   
   else
   
-  $check = $this->db->prepare("UPDATE users SET isAdmin='1' WHERE userid=:userid ");
-  $check->bindParam("userid", $args['userid']);
+  $check = $this->db->prepare("UPDATE users SET isAdmin='1' WHERE username=:username ");
+  $check->bindParam("username", $args['username']);
   $check->execute();
   
   return $response->withStatus(200);

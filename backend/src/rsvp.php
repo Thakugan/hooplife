@@ -6,11 +6,11 @@ use Slim\Http\Response;
 
 
 //show a specfic rsvp for a user
-$app->get('/rsvp/user/[{userid}]', function(Request $request, Response $response, array $args){
+$app->get('/rsvp/user/[{username}]', function(Request $request, Response $response, array $args){
  // $pdo = $this->db->prepare("SELECT * FROM rsvp WHERE userid=:userid");
   $pdo = $this->db->prepare("SELECT * FROM games natural join rsvp
-				WHERE userid = :userid");
-  $pdo->bindParam("userid", $args["userid"]);
+				WHERE username = :username");
+  $pdo->bindParam("username", $args["username"]);
   $pdo->execute();
   $rsvpGame = $pdo->fetchAll();
 if (!$rsvpGame)
@@ -46,16 +46,18 @@ if (!$rsvpGamebyID)
 
 //post reservation
 $app->post('/rsvp', function(Request $request, Response $response, array $args){
+
  // $pdo = $this->db->prepare("SELECT * FROM rsvp WHERE userid=:userid");
-      if ($_SERVER['REQUEST_METHOD'] == 'POST')
+     
+ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
   $data = json_decode(file_get_contents("php://input"));
     $gameid = $data->GameID;
-    $userid = $data->userid;
+    $username = $data->username;
 }
-  $check = $this->db->prepare("SELECT * FROM rsvp where GameID=:gameid AND userid=:userid");
+  $check = $this->db->prepare("SELECT * FROM rsvp where GameID=:gameid AND username=:username");
   $check->bindParam("gameid", $gameid);
-  $check->bindParam("userid", $userid);
+  $check->bindParam("username", $username);
   $check->execute();
   $row = $check->rowCount();
 
@@ -63,8 +65,8 @@ $app->post('/rsvp', function(Request $request, Response $response, array $args){
     
 	return $response->withStatus(401); }
  else {
-  $pdo = $this->db->prepare("INSERT INTO rsvp(GameID, userid) VALUES (:gameid, :userid)");
-  $pdo->bindParam("userid", $userid);
+  $pdo = $this->db->prepare("INSERT INTO rsvp(GameID, username) VALUES (:gameid, :username)");
+  $pdo->bindParam("username", $username);
   $pdo->bindParam("gameid", $gameid);
   $pdo->execute();
   return $response->withStatus(200);}

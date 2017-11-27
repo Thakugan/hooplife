@@ -12,22 +12,22 @@ $app->post('/new-location', function (Request $request, Response $response, arra
 	{ 
 
     $data = json_decode(file_get_contents("php://input"));
-    $userid = $data->userid;
+    $creator_username = $data->creator_username;
     $picture_url = $data->picture_url;
     $des = $data->descriptions;
     $address = $data->address;
 }
 
-if(!isset($picture_url) || !isset($userid) || !isset($address) || !isset($des) ||
-	empty($picture_url) || empty($userid) || empty($des) || empty($address)) {
+if(!isset($picture_url) || !isset($creator_username) || !isset($address) || !isset($des) ||
+	empty($picture_url) || empty($creator_username) || empty($des) || empty($address)) {
    
       //error message forbidden
       return $response->withStatus(403);
     }
    
    // Check if the user  exists
-   $stmt = $pdo->prepare('SELECT * FROM users WHERE userid=:userid');
-   $stmt->bindParam("userid", $userid);
+   $stmt = $pdo->prepare('SELECT * FROM users WHERE username=:creator_username');
+   $stmt->bindParam("creator_username", $creator_username);
    $stmt->execute();
    $row = $stmt->fetch(PDO::FETCH_ASSOC);
    if($row== 0)
@@ -56,16 +56,16 @@ if(!isset($picture_url) || !isset($userid) || !isset($address) || !isset($des) |
         address, 
         description,
         date_created, 
-        creator_userid,
+        creator_username,
         approved)
-    VALUES(:picture_url, :address, :des, CURRENT_TIMESTAMP, :userid, 0)"
+    VALUES(:picture_url, :address, :des, CURRENT_TIMESTAMP, :creator_username, 0)"
     );
    
  // Add the entry to the array once all the fields have been verified
     $stmt->bindParam("picture_url", $picture_url);
     $stmt->bindParam("address", $address);
     $stmt->bindParam("des", $des);
-    $stmt->bindParam("userid", $userid);
+    $stmt->bindParam("creator_username", $creator_username);
     $stmt->execute();
     return $response->withStatus(200);
 });

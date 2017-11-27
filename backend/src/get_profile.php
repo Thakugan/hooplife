@@ -5,13 +5,13 @@ header('Content-type: application/json');
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-$app->get('/profile/{userId}', function (Request $request, Response $response, array $args){
+$app->get('/profile/{username}', function (Request $request, Response $response, array $args){
 	$db = $this->db;
 	
         //Query users table for data on current user based on userID passed in
 	//Query results will tie to $targetUser
-	$userQuery = $db->prepare("SELECT username, first_name, last_name, num_of_games_played, email, date_joined, last_updated, year, ranking, rating FROM users WHERE userid = :uid");
-	$userQuery->bindParam("uid", $args['userId']);
+	$userQuery = $db->prepare("SELECT username, userid, first_name, last_name, num_of_games_played, email, date_joined, last_updated, last_login, year, isAdmin, ranking, rating, wins, losses, pic_url  FROM users WHERE username=:username");
+	$userQuery->bindParam("username", $args['username']);
 	$userQuery->execute();
 	$targetUser = $userQuery->fetchObject();
         $row = $userQuery->rowCount();
@@ -35,8 +35,8 @@ $app->get('/profile/{userId}', function (Request $request, Response $response, a
 	//Fetch comments on the user's page
 	
 	//If there are comments, add them to the targetUser object
-	$commentsQuery = $db->prepare("SELECT Comment, Date, UserID FROM comments WHERE TargetUserID =:tid");
-	$commentsQuery->bindParam("tid", $args['userId']);
+	$commentsQuery = $db->prepare("SELECT Comment, Date, username, target_id, target_username, URL FROM comments WHERE target_username =:username");
+	$commentsQuery->bindParam("username", $args['username']);
 	$commentsQuery->execute();
 	$numOfComments = $commentsQuery->rowCount();
 	

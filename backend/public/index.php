@@ -39,7 +39,7 @@ require __DIR__ . '/../src/approve_admin.php';
 require __DIR__ . '/../src/approve_location.php';
 require __DIR__ . '/../src/pofile-update.php';
 require __DIR__ . '/../src/stats-update.php';
-
+require __DIR__ . '/../src/change_password.php';
 
 // Add dynamic ones below this line --------------------------------------------
 

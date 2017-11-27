@@ -20,13 +20,14 @@ $app->post('/registration', function (Request $request, Response $response, arra
     $last_name = $data->last_name;
     $email = $data->email;
     $plain_password = $data->password;
+    $year = $data->year;
 }
 
 
     //when building html form, using ajax or js to prevent non-value params
     // checking if json is valid
-    if( !isset($username) || !isset($first_name) || !isset($plain_password) ||
-      empty($username) || empty($first_name) || empty($last_name) || empty($email) || empty($plain_password)) {
+    if( !isset($username) || !isset($year) || !isset($first_name) || !isset($plain_password) ||
+      empty($username) || empty($year) || empty($first_name) || empty($last_name) || empty($email) || empty($plain_password)) {
 
       //error message forbidden
       return $response->withStatus(403);
@@ -71,8 +72,11 @@ $app->post('/registration', function (Request $request, Response $response, arra
         date_joined , 
         last_updated , 
         num_of_games_played,
-        isAdmin)
-    VALUES(:username, :first_name, :last_name, :email, :password, 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0, 0)"
+        isAdmin,
+        wins,
+	losses,
+	year)
+    VALUES(:username, :first_name, :last_name, :email, :password, 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0, 0, 0, 0, :year)"
     );
 
     // Add the entry to the array once all the fields have been verified
@@ -81,6 +85,7 @@ $app->post('/registration', function (Request $request, Response $response, arra
     $stmt->bindParam("last_name", $last_name);
     $stmt->bindParam("email", $email);
     $stmt->bindParam("password", $password);
+    $stmt->bindParam("year", $year);
     $stmt->execute();
 
     return $response->withStatus(200);

@@ -5,17 +5,16 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 //approve locatinon
-$app->put('/locapprove[/{AdminID}[/{locid}]]', function($request, $response, $args){
-  $check = $this->db->prepare("SELECT *  FROM users where userid=:AdminID AND isAdmin='1'");
-  $check->bindParam("AdminID", $args['AdminID']);
+$app->get('/locapprove[/{AdminUsername}[/{locid}]]', function($request, $response, $args){
+
+  $check = $this->db->prepare("SELECT *  FROM users where username=:AdminUsername AND isAdmin='1'");
+  $check->bindParam("AdminUsername", $args['AdminUsername']);
   $check->execute();
   $row = $check->rowCount();
 
- if (!$row) 
- {
- 	return $response->withStatus(403);
+  if (!$row) {
+        return $response->withStatus(403);
  }
- 
 
  if ($row) 
  {

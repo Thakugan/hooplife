@@ -19,7 +19,7 @@ $app->put('/rank-update/[{uid}]', function(Request $request, Response $response,
   return $response->withStatus(403);
   }
   
-  $pdo = $this->db->prepare('SELECT *  FROM users WHERE userid=:uid');
+  $pdo = $this->db->prepare('SELECT *  FROM users WHERE username=:uid');
   $pdo->bindParam("uid", $args['uid']);
   $pdo->execute();
   $row = $pdo->rowCount();
@@ -30,7 +30,7 @@ $app->put('/rank-update/[{uid}]', function(Request $request, Response $response,
         }
   	else
 	{
-       $stmt = $this->db->prepare("UPDATE users SET ranking=:ranking WHERE userid=:uid");
+       $stmt = $this->db->prepare("UPDATE users SET ranking=:ranking WHERE username=:uid");
        $stmt->bindParam("uid", $args['uid']);
        $stmt->bindParam("ranking", $ranking);
        $stmt->execute();
@@ -55,7 +55,7 @@ $app->put('/games-played-update/[{uid}]', function(Request $request, Response $r
   return $response->withStatus(403);
   }
 
-  $pdo = $this->db->prepare('SELECT *  FROM users WHERE userid=:uid');
+  $pdo = $this->db->prepare('SELECT *  FROM users WHERE username=:uid');
   $pdo->bindParam("uid", $args['uid']);
   $pdo->execute();
   $row = $pdo->rowCount();
@@ -66,7 +66,7 @@ $app->put('/games-played-update/[{uid}]', function(Request $request, Response $r
         }
         else
         {
-       $stmt = $this->db->prepare("UPDATE users SET num_of_games_played=:num_of_games_played WHERE userid=:uid");
+       $stmt = $this->db->prepare("UPDATE users SET num_of_games_played=:num_of_games_played WHERE username=:uid");
        $stmt->bindParam("uid", $args['uid']);
        $stmt->bindParam("num_of_games_played", $num_of_games_played);
        $stmt->execute();
@@ -91,7 +91,7 @@ $app->put('/rating-update/[{uid}]', function(Request $request, Response $respons
   return $response->withStatus(403);
   }
 
-  $pdo = $this->db->prepare('SELECT *  FROM users WHERE userid=:uid');
+  $pdo = $this->db->prepare('SELECT *  FROM users WHERE username=:uid');
   $pdo->bindParam("uid", $args['uid']);
   $pdo->execute();
   $row = $pdo->rowCount();
@@ -102,9 +102,80 @@ $app->put('/rating-update/[{uid}]', function(Request $request, Response $respons
         }
         else
         {
-       $stmt = $this->db->prepare("UPDATE users SET rating=:rating WHERE userid=:uid");
+       $stmt = $this->db->prepare("UPDATE users SET rating=:rating WHERE username=:uid");
        $stmt->bindParam("uid", $args['uid']);
        $stmt->bindParam("rating", $rating);
+       $stmt->execute();
+        return $response->withStatus(200);
+
+}
+});
+
+
+// update player win/loss
+$app->put('/wins-update/[{uid}]', function(Request $request, Response $response, array $args){
+
+  $data = json_decode(file_get_contents("php://input"));
+  $wins = $data->wins;
+
+ //  $input = $request->getParsedBody();
+ //  $pdo->bindParam("ranking", $args["ranking"]);
+  // $pdo->execute();
+  // $input['ranking'] = $args['ranking'];
+  if( !isset($wins) || empty($wins)){
+
+  return $response->withStatus(403);
+  }
+
+  $pdo = $this->db->prepare('SELECT *  FROM users WHERE username=:uid');
+  $pdo->bindParam("uid", $args['uid']);
+  $pdo->execute();
+  $row = $pdo->rowCount();
+
+   if (!$row)
+        {
+        return $response->withStatus(404);
+        }
+        else
+        {
+       $stmt = $this->db->prepare("UPDATE users SET wins=:wins WHERE username=:uid");
+       $stmt->bindParam("uid", $args['uid']);
+       $stmt->bindParam("wins", $wins);
+       $stmt->execute();
+        return $response->withStatus(200);
+
+}
+});
+
+// update player loss
+$app->put('/losses-update/[{uid}]', function(Request $request, Response $response, array $args){
+
+  $data = json_decode(file_get_contents("php://input"));
+  $losses = $data->losses;
+
+ //  $input = $request->getParsedBody();
+ //  $pdo->bindParam("ranking", $args["ranking"]);
+  // $pdo->execute();
+  // $input['ranking'] = $args['ranking'];
+  if( !isset($losses) || empty($losses)){
+
+  return $response->withStatus(403);
+  }
+
+  $pdo = $this->db->prepare('SELECT *  FROM users WHERE username=:uid');
+  $pdo->bindParam("uid", $args['uid']);
+  $pdo->execute();
+  $row = $pdo->rowCount();
+
+   if (!$row)
+        {
+        return $response->withStatus(404);
+        }
+        else
+        {
+       $stmt = $this->db->prepare("UPDATE users SET losses=:losses WHERE username=:uid");
+       $stmt->bindParam("uid", $args['uid']);
+       $stmt->bindParam("losses", $losses);
        $stmt->execute();
         return $response->withStatus(200);
 
