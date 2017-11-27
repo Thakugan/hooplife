@@ -1,10 +1,11 @@
 export class Game {
-	game_id: number;
+	GameID: number;
+	picture_url: string;
 	location_id: number;
 	description: string;
-	minimum_rating: number;
 	time_created: Date;
-	date_of_game: Date;
 	time_of_game: string;
-	creator_id: number;
+	creator_username: number;
+	date_of_game: Date;
+	minimum_rank: number;
 }

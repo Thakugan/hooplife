@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink, NavigationEnd } from '@angular/router';
 import { Page } from '../../_models/page';
 
 import { AuthService } from '../../_services/auth.service';
@@ -15,8 +15,22 @@ export class NavigationComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private profileService: ProfileService
-  ) { }
+    private profileService: ProfileService,
+    private router: Router
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function(){
+        return false;
+     }
+
+     this.router.events.subscribe((evt) => {
+        if (evt instanceof NavigationEnd) {
+           // trick the Router into believing it's last link wasn't previously loaded
+           this.router.navigated = false;
+           // if you need to scroll back to top, here is the right place
+           window.scrollTo(0, 0);
+        }
+    });
+  }
 
   ngOnInit() {
     var currentUser = this.profileService.getCurrentUser();
@@ -28,10 +42,6 @@ export class NavigationComponent implements OnInit {
       {
         "name": "games",
         "url": "games"
-      },
-      {
-        "name": "chat",
-        "url": "chat"
       },
       {
         "name": "add a location",

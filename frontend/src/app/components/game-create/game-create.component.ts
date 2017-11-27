@@ -23,13 +23,13 @@ export class GameCreateComponent implements OnInit {
   ngOnInit() {
   }
 
-  private processRating(rating: number){
-    this.game.minimum_rating = rating;
+  processRating(rank: number){
+    this.game.minimum_rank = rank;
   }
 
-  private createGame(){
+  createGame(){
     this.game.time_of_game = this.hour + ':' + this.minute + ' ' + this.amORpm;
-    this.game.creator_id = this.current_user_id;
+    this.game.creator_username = this.current_user_id;
   }
 
 }

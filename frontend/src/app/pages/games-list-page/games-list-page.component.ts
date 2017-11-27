@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GamesListComponent } from '../../components/games-list/games-list.component';
+import { Router } from '@angular/router';
+
+import { GameService } from '../../_services/game.service';
+
+import { Game } from '../../_models/game';
 
 @Component({
   selector: 'app-games-list-page',
@@ -9,10 +13,41 @@ import { GamesListComponent } from '../../components/games-list/games-list.compo
 
 export class GamesListPageComponent implements OnInit {
 
-	constructor() {
+  allGamesActive: boolean = true;
+	allGames: Game[] = [];
+	attendingGames: Game[] = [];
+
+	constructor(
+    private router: Router,
+    private gameService: GameService
+  ) {
 	}
 
-  	ngOnInit() {
-  	}
+	ngOnInit() {
+    this.getAllGames();
+	}
+
+  getAllGames() {
+    this.gameService.getAllGames().subscribe(
+      games => {
+        this.allGames = games;
+      },
+      err => {
+        console.log("Error getting all games");
+      }
+    );
+  }
+
+  openNewGamePage() {
+    this.router.navigate(['/dashboard/gameSubmit']);
+  }
+
+	allGamesToggle(){
+		this.allGamesActive = true;
+	}
+
+	attendingGamesToggle(){
+		this.allGamesActive = false;
+	}
 
 }

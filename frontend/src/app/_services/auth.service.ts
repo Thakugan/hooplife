@@ -31,7 +31,6 @@ export class AuthService {
   /** POST: add a new user to the server */
   addUser (user: User, pass: string): Observable<HttpResponse<any>> {
     const url = `${this.apiUrl}/registration`;
-    console.log(url);
     return this.http.post<Response>(this.apiUrl,
       {
         username: user.username,
@@ -57,10 +56,10 @@ export class AuthService {
     );
   }
 
-  /* TODO POST: change password */
+  /* TODO PUT: change password */
   changePass(username: string, oldPass: string, newPass: string): Observable<HttpResponse<any>> {
     const url = `${this.apiUrl}/change-password/${username}`;
-    return this.http.post<Response>(url,
+    return this.http.put<Response>(url,
       {
         old_password: oldPass,
         new_password: newPass

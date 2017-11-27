@@ -43,7 +43,7 @@ export class UserPageComponent implements OnInit {
         this.userFound = true;
       },
       err => {
-        return;
+        this.user = new User();
       }
     );
   }

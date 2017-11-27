@@ -6,7 +6,7 @@
 				<img class="card-img-top" src="{{location.imageUrl}}" alt="Location image">
 				<div class="card-body text-centered">
 					<h3>location.name</h3>
-					<rating [ratingValue]="{{5}}"></rating>
+					<rating [ratingValue]="5"></rating>
 				</div>
 			</div>
 		</div>
@@ -21,7 +21,7 @@
 					<button type="button" class="btn btn-primary" (click)="handlePlayer()">Click to register to this game!</button>
 				</span>
 			</span>
-			<span>Minimum Rank: <rating [ratingValue]="{{3}}"></rating></span>
+			<span>Minimum Rank: <rating [ratingValue]="3"></rating></span>
 			<hr />
 			<p>game.date</p>
 			<p>game.numOfPlayers</p>
@@ -44,7 +44,7 @@
 								<div class="card-body">
 									<span>{{player.username}} <rating [ratingValue]="player.rating"></rating></span>
 								</div>
-							</div>	
+							</div>
 						</div>
 					</div>
 				</div>
@@ -62,11 +62,11 @@
 						<label for="commentInput">Comment</label>
 						<textarea class="form-control" id="commentInput" rows="3" required [(ngModel)]="newComment.commentText"></textarea>
 					</div>
-					<button type="submit" class="btn btn-primary" (click)="addComment()"> 
+					<button type="submit" class="btn btn-primary" (click)="addComment()">
 						Submit
 					</button>
 				</div>
-			</div>	
+			</div>
 		</div>
 	</div>
 	<div class="row">

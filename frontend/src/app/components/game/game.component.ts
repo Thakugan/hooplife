@@ -7,8 +7,8 @@ import { Player } from '../../_models/player';
 
 @Component({
   selector: 'game',
-  templateUrl: './game-public.component.html',
-  styleUrls: ['./game-public.component.scss']
+  templateUrl: './game.component.html',
+  styleUrls: ['./game.component.scss']
 })
 
 export class GameComponent implements OnInit {
@@ -23,7 +23,7 @@ export class GameComponent implements OnInit {
 	private newComment: Comment = new Comment();
 
 	constructor() {
-		
+
 	}
 
   	ngOnInit() {

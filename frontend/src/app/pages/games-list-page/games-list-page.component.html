@@ -1,1 +1,32 @@
-<games-list></games-list>
+<div class="games-list mt-4">
+	<button type="button" class="btn btn-info" [disabled]="allGamesActive" (click)="allGamesToggle()">All Games</button>
+	<button type="button" class="btn btn-info" [disabled]="!allGamesActive" (click)="attendingGamesToggle()">Games I'm Attending</button>
+  <button type="button" class="btn btn-outline-dark float-right" (click)="openNewGamePage()">NEW GAME</button>
+	<hr />
+	<div *ngIf="allGamesActive" class="clearfix">
+		<div *ngFor="let game of allGames">
+			<div class="card w-100">
+				<div class="card-body">
+					<h4>{{game.description}}</h4>
+					<p>{{game.location}}</p>
+					<p>{{game.location.address}}</p>
+					<p>Number of players: kladfjslk</p>
+					<p>Minimum Rating: {{game.minimum_rank}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div *ngIf="!allGamesActive">
+		<div *ngFor="let game of attendingGames">
+			<div class="card w-100">
+				<div class="card-body">
+					<h4>game.description</h4>
+					<p>game.location.name</p>
+					<p>game.location.address</p>
+					<p>Number of players: kladfjslk</p>
+					<p>Minimum Rating: dflksjd</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

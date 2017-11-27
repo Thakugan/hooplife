@@ -11,15 +11,18 @@ import { RegistrationComponent } from '../../components/registration/registratio
 import { LocationDetailsPageComponent } from '../../pages/location-details-page/location-details-page.component';
 import { UserPageComponent } from '../../pages/user-page/user-page.component';
 import { LocationSubmitPageComponent } from '../../pages/location-submit-page/location-submit-page.component';
+import { GameCreatePageComponent } from '../../pages/game-create-page/game-create-page.component';
+import { GamesListPageComponent } from '../../pages/games-list-page/games-list-page.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard/chat', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard/games', pathMatch: 'full' },
   { path: 'registration', component: RegistrationComponent, canActivate: [LoginGuard] },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'chat', pathMatch: 'full' },
-      { path: 'chat', component: LocationDetailsPageComponent, canActivate: [AuthGuard] },
+      { path: 'games', component: GamesListPageComponent, canActivate: [AuthGuard] },
+      { path: 'gameSubmit', component: GameCreatePageComponent, canActivate: [AuthGuard] },
       { path: 'location', component: LocationDetailsPageComponent, canActivate: [AuthGuard] },
       { path: 'locationSubmit', component: LocationSubmitPageComponent, canActivate: [AuthGuard] },
       { path: 'user/:username', component: UserPageComponent, canActivate: [AuthGuard] },
