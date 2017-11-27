@@ -1,17 +1,18 @@
-import { Comment } from './comment';
-
 export class User {
-	firstName: string;
-	lastName: string;
 	username: string;
-	password: string;
+	userid: number;
+	first_name: string;
+	last_name: string;
+	num_of_games_played: number;
 	email: string;
-	dateCreated: Date;
-	comments: Comment[];
-	rating: number;
+	date_joined: Date;
+	last_updated: Date;
+	last_login: Date;
 	year: string;
-	rank: string;
-	gamesPlayed: number;
+	isAdmin: boolean;
+	ranking: string;
+	rating: number;
 	wins: number;
 	losses: number;
+	pic_url: string;
 }

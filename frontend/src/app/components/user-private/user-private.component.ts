@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
 import { User } from '../../_models/user';
+import { Comment } from '../../_models/comment';
 
 @Component({
   	selector: 'app-user-private',
@@ -10,34 +12,13 @@ import { User } from '../../_models/user';
 export class UserPrivateComponent {
 
 	displayComments: boolean = false;
-	public user: User;
+	@Input() user: User;
+  @Input() comments: Comment[];
 
 	newUsername: string;
 	newEmail: string;
 
-	constructor(){
-
-		this.user = {
-			username: "69xB-Ballerx69",
-			firstName: "Chris",
-			lastName: "Ragsdale",
-			rating: 5,
-			year: "Junior",
-			rank: "Badass",
-			gamesPlayed: 385,
-			wins: 384,
-			losses: 1,
-			email: "Cragsdale@smu.edu",
-      password: "**",
-			comments: [
-				{ userName: 'Lebron James', date: new Date(), rating: 5, commentText: 'Way better than me. I love him.', showRating: true },
-				{ userName: 'Michael Jordan', date: new Date(), rating: 5, commentText: 'This boi can play', showRating: false },
-				{ userName: 'Shaq', date: new Date(), rating: 5, commentText: 'I want to father his children', showRating: true }
-			],
-			dateCreated: new Date()
-		};
-
-	}
+	constructor(){ }
 
 	updateUser(){
 		this.user.username = this.newUsername;

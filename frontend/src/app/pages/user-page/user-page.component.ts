@@ -1,4 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { ProfileService } from '../../_services/profile.service';
+
+import { User } from '../../_models/user';
+import { Comment } from '../../_models/comment';
+
 import { UserPublicComponent } from '../../components/user-public/user-public.component';
 import { UserPrivateComponent } from '../../components/user-private/user-private.component'
 
@@ -10,13 +17,35 @@ import { UserPrivateComponent } from '../../components/user-private/user-private
 
 export class UserPageComponent implements OnInit {
 
-	public isPublic: boolean;
+	isPublic: boolean;
+  userFound: boolean = false;
+  user: User;
+  comments: Comment[] = [];
 
-	constructor() {
+	constructor(
+    private route: ActivatedRoute,
+    private profileService: ProfileService
+  ) {
 		this.isPublic = true;
 	}
 
-  	ngOnInit() {
-  	}
+	ngOnInit() {
+    this.getUser();
+	}
+
+  getUser() {
+    const username = this.route.snapshot.paramMap.get('username');
+    this.profileService.getUser(username).subscribe(
+      user => {
+        this.user = user;
+        var currentUser = this.profileService.getCurrentUser();
+        this.isPublic = (username === currentUser) ? false : true;
+        this.userFound = true;
+      },
+      err => {
+        return;
+      }
+    );
+  }
 
 }

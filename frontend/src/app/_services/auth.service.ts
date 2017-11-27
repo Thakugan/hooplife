@@ -4,7 +4,6 @@ the authentication guard. */
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Response } from '@angular/http';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
@@ -23,7 +22,6 @@ const headers =  new HttpHeaders({ 'Content-Type': 'application/json' });
 export class AuthService {
 
   private apiUrl = environment.url;
-  token: string;
 
   constructor(
     private http: HttpClient,
@@ -31,16 +29,16 @@ export class AuthService {
   ) { }
 
   /** POST: add a new user to the server */
-  addUser (user: User): Observable<HttpResponse<any>> {
+  addUser (user: User, pass: string): Observable<HttpResponse<any>> {
     const url = `${this.apiUrl}/registration`;
     console.log(url);
     return this.http.post<Response>(this.apiUrl,
       {
         username: user.username,
-        first_name: user.firstName,
-        last_lame: user.lastName,
+        first_name: user.first_name,
+        last_lame: user.last_name,
         email: user.email,
-        password: user.password
+        password: pass
       },
       {observe: 'response'}).pipe(
       tap(res => console.log(`added user w/ username=${user.username}`))
@@ -61,7 +59,7 @@ export class AuthService {
 
   getJWT(payload) {
     var header = {alg: "HS256", typ: "JWT"};
-    return KJUR.jws.JWS.sign("HS256", header, payload, {utf8: "secret"})
+    return KJUR.jws.JWS.sign("HS256", header, payload, {utf8: "secret"});
   }
 
   logout() {

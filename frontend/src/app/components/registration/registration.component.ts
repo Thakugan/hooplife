@@ -15,6 +15,7 @@ import { User } from '../../_models/user';
 export class RegistrationComponent implements OnInit {
 
   tempUser: User = new User();
+  pass: string;
   passConfirmation: string;
 
   constructor(
@@ -27,14 +28,14 @@ export class RegistrationComponent implements OnInit {
   }
 
   submit() {
-    if(this.tempUser.password != this.passConfirmation) {
+    if(this.pass != this.passConfirmation) {
       this.snackBar.open('Passwords do not match, please try again', '', {
         duration: 5000
       });
       return;
     }
 
-    this.authService.addUser(this.tempUser).subscribe(
+    this.authService.addUser(this.tempUser, this.pass).subscribe(
       res => {
         this.checkRegistration(res.status);
       },

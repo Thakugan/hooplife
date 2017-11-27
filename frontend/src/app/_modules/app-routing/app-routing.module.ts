@@ -22,7 +22,7 @@ const routes: Routes = [
       { path: 'chat', component: LocationDetailsPageComponent, canActivate: [AuthGuard] },
       { path: 'location', component: LocationDetailsPageComponent, canActivate: [AuthGuard] },
       { path: 'locationSubmit', component: LocationSubmitPageComponent, canActivate: [AuthGuard] },
-      { path: 'user', component: UserPageComponent, canActivate: [AuthGuard] },
+      { path: 'user/:username', component: UserPageComponent, canActivate: [AuthGuard] },
     ]
   },
   { path: '**', component: DashboardComponent }

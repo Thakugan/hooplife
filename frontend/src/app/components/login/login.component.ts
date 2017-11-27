@@ -13,6 +13,7 @@ import { Login } from '../../_models/login';
 export class LoginComponent implements OnInit {
 
   auth: Login = new Login();
+  username: string;
 
   constructor(
     private authService: AuthService,
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
+    this.username = this.auth.username;
     this.authService.login(this.auth).subscribe(
       res => {
         this.checkAuth(res.status);
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
 
   checkAuth(status) {
     if(status == 200) {
-      localStorage.setItem('auth', this.authService.getJWT({user: this.auth.username}));
+      localStorage.setItem('auth', this.authService.getJWT({user: this.username}));
     } else {
       this.snackBar.open('Login failed, please try again', '', {
         duration: 5000

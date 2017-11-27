@@ -7,10 +7,10 @@
     <form #registrationForm="ngForm" class="text-center mb-3" (ngSubmit)="submit()">
       <div class="form-row">
         <span class="col">
-          <input #firstName class="form-control" id="first-name" name="firstName" [(ngModel)]="tempUser.firstName" placeholder="First Name" required>
+          <input #firstName class="form-control" id="first-name" name="firstName" [(ngModel)]="tempUser.first_name" placeholder="First Name" required>
         </span>
         <span class="col">
-          <input #lastName class="form-control" id="last-name" name="lastName" [(ngModel)]="tempUser.lastName" placeholder="Last Name" required>
+          <input #lastName class="form-control" id="last-name" name="lastName" [(ngModel)]="tempUser.last_name" placeholder="Last Name" required>
         </span>
       </div>
       <div class="form-row mt-3">
@@ -25,7 +25,7 @@
       </div>
       <div class="form-row mt-3">
         <span class="col">
-          <input #password class="form-control" type="password" id="password" name="password" [(ngModel)]="tempUser.password"  placeholder="Password" required>
+          <input #password class="form-control" type="password" id="password" name="password" [(ngModel)]="pass"  placeholder="Password" required>
         </span>
       </div>
       <div class="form-row mt-3">
