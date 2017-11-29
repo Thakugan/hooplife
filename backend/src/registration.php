@@ -2,7 +2,7 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-$app->post('/registration', function (Request $request, Response $response, array $args) {
+$app->post('/registration', function ($request,$response, array $args) {
 
     $pdo = $this->db;
     //$json = $request->getBody();
@@ -26,7 +26,7 @@ $app->post('/registration', function (Request $request, Response $response, arra
 
     //when building html form, using ajax or js to prevent non-value params
     // checking if json is valid
-    if( !isset($username) || !isset($year) || !isset($first_name) || !isset($plain_password) ||
+    if( !isset($username) || !isset($email)|| !isset($last_name) || !isset($year) || !isset($first_name) || !isset($plain_password) ||
       empty($username) || empty($year) || empty($first_name) || empty($last_name) || empty($email) || empty($plain_password)) {
 
       //error message forbidden

@@ -18,8 +18,8 @@ $app->post('/new-location', function (Request $request, Response $response, arra
     $address = $data->address;
 }
 
-if(!isset($picture_url) || !isset($creator_username) || !isset($address) || !isset($des) ||
-	empty($picture_url) || empty($creator_username) || empty($des) || empty($address)) {
+if( !isset($creator_username) || !isset($address) || !isset($des) ||
+ empty($creator_username) || empty($des) || empty($address)) {
    
       //error message forbidden
       return $response->withStatus(403);

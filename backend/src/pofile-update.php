@@ -15,7 +15,8 @@ $app->put('/profile-update/[{id}]', function(Request $request, Response $respons
   $last_name = $info['last_name'];
   $email = $info['email'];
   $year = $info['year'];
-  
+  $pic_url = $infor['pic_url'];
+ 
         $data = json_decode(file_get_contents("php://input"));
 
    //$input = $request->getParsedBody();
@@ -31,13 +32,17 @@ $app->put('/profile-update/[{id}]', function(Request $request, Response $respons
    if (!empty($data->year)) {
         $year = $data->year;
         }
-   $sql = "UPDATE users SET first_name=:fn, last_name=:ln, email=:em, year=:yr,last_updated=CURRENT_TIMESTAMP WHERE username=:id";
+   if (!empty($data->pic_url)) {
+        $pic_url = $data->pic_url;
+        }
+   $sql = "UPDATE users SET first_name=:fn, last_name=:ln, email=:em, year=:yr,last_updated=CURRENT_TIMESTAMP, pic_url=:pic WHERE username=:id";
    $sth = $this->db->prepare($sql);
    $sth->bindParam("id", $args['id']);
    $sth->bindParam("fn", $first_name);
    $sth->bindParam("ln", $last_name);
    $sth->bindParam("em", $email);
    $sth->bindParam("yr", $year);
+   $sth->bindParam("pic", $pic_url);
         $sth->execute();
         return $response->withStatus(200);
 

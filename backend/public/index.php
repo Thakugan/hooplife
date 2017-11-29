@@ -11,7 +11,7 @@ if (PHP_SAPI == 'cli-server') {
 
 require __DIR__ . '/../vendor/autoload.php';
 
-session_start();
+//session_start();
 
 // Instantiate the app
 $settings = require __DIR__ . '/../src/settings.php';
@@ -40,6 +40,10 @@ require __DIR__ . '/../src/approve_location.php';
 require __DIR__ . '/../src/pofile-update.php';
 require __DIR__ . '/../src/stats-update.php';
 require __DIR__ . '/../src/change_password.php';
+require __DIR__ . '/../src/comments.php';
+require __DIR__ . '/../src/location-update.php';
+require __DIR__ . '/../src/delete_location.php';
+
 
 // Add dynamic ones below this line --------------------------------------------
 
