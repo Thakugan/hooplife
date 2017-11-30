@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { LocationService } from '../../_services/location.service';
+import { ProfileService } from '../../_services/profile.service';
 
 import { Location } from '../../_models/location';
 import { Comment } from '../../_models/comment';
@@ -23,7 +24,8 @@ export class LocationDetailsPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private locationService: LocationService
+    private locationService: LocationService,
+    private profileService: ProfileService
   ) { }
 
   ngOnInit() {
@@ -44,12 +46,18 @@ export class LocationDetailsPageComponent implements OnInit {
   }
 
   getComments() {
-    this.comments = [];
+    const loc = +this.route.snapshot.paramMap.get('locID');
+    this.profileService.getComments("location", loc).subscribe(
+      comments => {
+        this.comments = comments;
+      },
+      err => {
+        this.comments = [];
+      }
+    );
   }
 
   addComment() {
-    this.newComment.date = new Date();
-
     this.newComment = new Comment();
     this.hasCommented = true;
   }

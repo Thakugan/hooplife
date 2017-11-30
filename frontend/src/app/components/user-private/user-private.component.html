@@ -25,7 +25,7 @@
 		<approve-locations></approve-locations>
 	</div>
 
-	<div class="row clearfix">
+	<div class="row clearfix" *ngIf="comments != null">
 		<div class="col-md-12">
 			<div class="card mt-3 mb-3" id="comment-section">
 				<div class="card-header" id="commentHeader" (click)="displayComments=!displayComments">

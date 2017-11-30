@@ -45,7 +45,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-12" *ngIf="comments != null">
 			<div class="card mt-3 mb-3" id="comment-section">
 				<div class="card-header" id="commentHeader" (click)="displayComments=!displayComments">
 					<p class="text-center comments-indicator">Comments ({{comments.length}})</p>
@@ -56,7 +56,7 @@
 					<p>Be the first to write a comment!</p>
 				</div>
 
-				<div class="card-body pb-3" id="CommentList" *ngIf="displayComments">
+				<div class="card-body pb-3" id="CommentList">
 					<div *ngFor="let com of comments">
 						<comment-block [comment]="com"></comment-block>
 					</div>

@@ -13,6 +13,7 @@ import { KJUR } from 'jsrsasign';
 import { environment } from '../../environments/environment';
 
 import { User } from '../_models/user';
+import { Comment } from '../_models/comment';
 
 const headers =  new HttpHeaders({ 'Content-Type': 'application/json' });
 
@@ -24,6 +25,22 @@ export class ProfileService {
   constructor(
     private http: HttpClient
   ) { }
+
+  /** POST: create a comment */
+  createComment (username: string, comment: string, type: string, target: any, rating: number): Observable<HttpResponse<any>> {
+    const url = `${this.apiUrl}/new-commment`;
+    return this.http.post<Response>(url,
+      {
+        username: username,
+        comment: comment,
+        type: type,
+        id: target,
+        rating: rating
+      },
+      {observe: 'response'}).pipe(
+      tap(res => console.log(`added comment from user=${username}`))
+    );
+  }
 
   /** GET: find a user */
   getUser (username: string): Observable<User> {
@@ -52,11 +69,11 @@ export class ProfileService {
     );
   }
 
-  getComments(username: string): Observable<Comment[]> {
-    const url = `${this.apiUrl}/profile/${username}`;
+  getComments(type: string, target: any): Observable<Comment[]> {
+    const url = `${this.apiUrl}/${type}/${target}/comments`;
     console.log(url);
     return this.http.get<Comment[]>(url).pipe(
-      tap(res => console.log(`found user w/ username=${username}`))
+      tap(res => console.log(`found comments`))
     );
   }
 
