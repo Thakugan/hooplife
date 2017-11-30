@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatSnackBar }
+import { MatSnackBar } from '@angular/material';
 
 import { GameService } from '../../_services/game.service';
 

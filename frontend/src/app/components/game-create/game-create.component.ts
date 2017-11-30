@@ -29,7 +29,8 @@ export class GameCreateComponent implements OnInit {
     private locationService: LocationService,
     private gameService: GameService,
     private profileService: ProfileService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -61,11 +62,8 @@ export class GameCreateComponent implements OnInit {
         this.router.navigate(['/dashboard/games']);
       },
       err => {
-        this.snackBar.open('Request failed, please try again.', '', {
-          duration: 5000
-      });
-    )
-
+        this.snackBar.open('Request failed, please try again.', '', { duration: 5000 });
+      }
+    );
   }
-
 }
