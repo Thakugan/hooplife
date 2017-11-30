@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Game } from '../../_models/game';
 import { Location } from '../../_models/location';
 import { LocationService } from '../../_services/location.service';
 import { GameService } from '../../_services/game.service';
