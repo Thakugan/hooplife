@@ -52,6 +52,14 @@ export class ProfileService {
     );
   }
 
+  getComments(username: string): Observable<Comment[]> {
+    const url = `${this.apiUrl}/profile/${username}`;
+    console.log(url);
+    return this.http.get<Comment[]>(url).pipe(
+      tap(res => console.log(`found user w/ username=${username}`))
+    );
+  }
+
   getCurrentUser(): string {
     var currentUser = KJUR.jws.JWS.parse(localStorage.getItem('auth')).payloadObj.user;
     return currentUser;

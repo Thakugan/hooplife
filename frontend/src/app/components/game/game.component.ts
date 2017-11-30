@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar }
+
+import { GameService } from '../../_services/game.service';
 
 import { Comment } from '../../_models/comment';
 import { User } from '../../_models/user';
@@ -26,7 +29,9 @@ export class GameComponent implements OnInit {
 
   newComment: Comment = new Comment();
 
-	constructor() {
+	constructor(
+    private gameService: GameService
+  ) {
 
 	}
 
@@ -48,7 +53,9 @@ export class GameComponent implements OnInit {
 
   handlePlayer(){
     if(this.isPlayer){
-
+      this.gameService.deleteRSVP().subscribe(
+        res =>
+      );
     }
     else{
 
