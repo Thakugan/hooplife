@@ -13,7 +13,7 @@ export class RatingComponent {
 	clickStars: boolean;
 
 	@Input() public ratingValue: number;
-	@Output() public onRated = new EventEmitter<number>();
+	@Output() public processRating = new EventEmitter<number>();
 
 	ngOnInit() {
 		if(this.ratingValue === 0)
@@ -29,7 +29,7 @@ export class RatingComponent {
 	}
 
 	public rated(num: number){
-		this.onRated.emit(num);
+		this.processRating.emit(num);
 		this.ratingValue = num;
 	}
 }

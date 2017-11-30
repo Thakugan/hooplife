@@ -9,9 +9,7 @@
 				<div class="card-body">
 						<a [routerLink]="'/dashboard/game/' + game.GameID"><h4>{{game.description}}</h4></a>
 						<p>Organizer: <a [routerLink]="'/dashboard/user/' + game.creator_username">{{game.creator_username}}</a></p>
-						<p>{{game.location_id}}</p>
 						<!-- <p>{{game.location.address}}</p> -->
-						<p>Number of players: 0</p>
 						<p>Minimum Rating: {{game.minimum_rank ? game.minimum_rank : 'N/A'}}</p>
 				</div>
 			</div>

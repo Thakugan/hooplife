@@ -1,7 +1,7 @@
 export class Game {
 	GameID: number;
 	picture_url: string;
-	location_id: number;
+	locationID: number;
 	description: string;
 	time_created: Date;
 	creator_username: number;

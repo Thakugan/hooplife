@@ -1,7 +1,7 @@
 <div class="card mb-3">
 	<div class="card-header">
 		<a [routerLink]="'/dashboard/user/' + comment.username">{{comment.username}}</a> {{comment.Date}}
-		<div>
+		<div *ngIf="showRating">
 			<rating [ratingValue]="comment.rating"></rating>
 		</div>
 	</div>

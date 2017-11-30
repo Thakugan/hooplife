@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
-import { GameComponent } from '../../components/game/game.component';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 import { GameService } from '../../_services/game.service';
 import { ProfileService } from '../../_services/profile.service';
+import { LocationService } from '../../_services/location.service';
 
 import { User } from '../../_models/user';
 import { Game } from '../../_models/game';
@@ -26,10 +26,15 @@ export class GamePageComponent implements OnInit {
   comments: Comment[];
   location: Location;
 
+  newComment: Comment = new Comment();
+
 	constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private gameService: GameService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private locationService: LocationService,
+    private snackBar: MatSnackBar
   ) {
 	}
 
@@ -39,7 +44,6 @@ export class GamePageComponent implements OnInit {
     this.isPlayer();
     this.getPlayers();
     this.getComments();
-    this.getLocation();
 	}
 
   getUser() {
@@ -59,6 +63,9 @@ export class GamePageComponent implements OnInit {
     this.gameService.getGame(gameid).subscribe(
       game => {
         this.game = game[0];
+        console.log(JSON.stringify(this.game));
+        console.log(this.game.locationID);
+        this.getLocation(this.game.locationID);
       },
       err => {
         this.game = new Game();
@@ -111,7 +118,63 @@ export class GamePageComponent implements OnInit {
     );
   }
 
-  getLocation() {
-    this.location = new Location();
+  getLocation(id: number) {
+    this.locationService.getLocation(id).subscribe(
+      res => {
+        this.location = res;
+      },
+      err => {
+        this.location = new Location();
+        console.log("could not find location");
+      }
+    )
+  }
+
+  addComment(){
+    const gameid = this.route.snapshot.paramMap.get('gameid');
+    this.profileService.createComment(this.user.username, this.newComment.Comment, 'game', gameid, 0).subscribe(
+      res => {
+        this.router.navigate(['/dashboard/game/' + gameid])
+      },
+      err => {
+        this.snackBar.open('Comment submition failed, please try again.', '', { duration: 5000 });
+      }
+    );
+	}
+
+  handlePlayer(){
+    if(this.player){
+      this.gameService.deleteRSVP(this.user.username, this.game.GameID).subscribe(
+        res => {
+          this.player = false;
+          this.getPlayers();
+          this.snackBar.open("You have canceled your rsvp to this game", '', {
+            duration: 5000
+          });
+        },
+        err => {
+          this.snackBar.open('Could not delete rsvp, please try again', '', {
+            duration: 5000
+          });
+        }
+      );
+    }
+    else{
+      this.gameService.rsvp(this.user.username, this.game.GameID).subscribe(
+        res => {
+          this.player = true;
+          const gameid = +this.route.snapshot.paramMap.get('gameid');
+          this.router.navigate([`/dashboard/game/${gameid}`]);
+          this.snackBar.open("You have rsvp'd to this game", '', {
+            duration: 5000
+          });
+        },
+        err => {
+          this.snackBar.open('Could not rsvp, please try again', '', {
+            duration: 5000
+          });
+        }
+      );
+    }
   }
 }

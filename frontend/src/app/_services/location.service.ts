@@ -63,7 +63,7 @@ export class LocationService {
   getLocation (id: number): Observable<Location> {
     const url = `${this.apiUrl}/location/${id}`;
     return this.http.get<Location>(url).pipe(
-      tap(res => console.log(`found games with id=${id}`))
+      tap(res => console.log(`found location with id=${id}`))
     );
   }
 

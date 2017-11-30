@@ -40,7 +40,7 @@ export class GameService {
 
   /** POST: rsvp to the game */
   rsvp (username: string, game_id: number): Observable<HttpResponse<any>> {
-    const url = `${this.apiUrl}/new-location`;
+    const url = `${this.apiUrl}/rsvp`;
     return this.http.post<Response>(url,
       {
         GameID : game_id,

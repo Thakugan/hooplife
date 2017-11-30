@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+
 import { User } from '../../_models/user'
 import { Comment } from '../../_models/comment';
 
@@ -22,15 +25,26 @@ export class UserPublicComponent{
   @Input() comments: Comment[];
 
 	constructor(
-    private profileService: ProfileService
+    private route: ActivatedRoute,
+    private router: Router,
+    private profileService: ProfileService,
+    private snackBar: MatSnackBar
   ){ }
 
   ngOnInit() {
     this.currentUser = this.profileService.getCurrentUser();
   }
 
-  // TODO change this to hit the api
 	addComment() {
+    const user = this.route.snapshot.paramMap.get('username');
+    this.profileService.createComment(this.currentUser, this.newComment.Comment, 'user', user, this.newComment.rating).subscribe(
+      res => {
+        this.router.navigate(['/dashboard/user/' + user])
+      },
+      err => {
+        this.snackBar.open('Comment submition failed, please try again.', '', { duration: 5000 });
+      }
+    );
   }
 
   processRating(num: number){

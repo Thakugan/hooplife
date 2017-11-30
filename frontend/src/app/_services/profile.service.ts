@@ -28,11 +28,11 @@ export class ProfileService {
 
   /** POST: create a comment */
   createComment (username: string, comment: string, type: string, target: any, rating: number): Observable<HttpResponse<any>> {
-    const url = `${this.apiUrl}/new-commment`;
+    const url = `${this.apiUrl}/newcomment`;
     return this.http.post<Response>(url,
       {
         username: username,
-        comment: comment,
+        Comment: comment,
         type: type,
         id: target,
         rating: rating

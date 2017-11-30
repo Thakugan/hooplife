@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 import { LocationService } from '../../_services/location.service';
 import { ProfileService } from '../../_services/profile.service';
@@ -24,8 +25,10 @@ export class LocationDetailsPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private locationService: LocationService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -57,10 +60,18 @@ export class LocationDetailsPageComponent implements OnInit {
     );
   }
 
-  addComment() {
-    this.newComment = new Comment();
-    this.hasCommented = true;
-  }
+  addComment(){
+    const loc = this.route.snapshot.paramMap.get('locID');
+    const currentUser = this.profileService.getCurrentUser();
+    this.profileService.createComment(currentUser, this.newComment.Comment, 'location', loc, 0).subscribe(
+      res => {
+        this.router.navigate(['/dashboard/location/' + loc])
+      },
+      err => {
+        this.snackBar.open('Comment submition failed, please try again.', '', { duration: 5000 });
+      }
+    );
+	}
 
   processRating(num: number){
     this.newComment.rating = num;

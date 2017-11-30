@@ -12,7 +12,6 @@ import { LocationSubmitComponent } from '../../components/location-submit/locati
 import { LocationBrowserComponent } from '../../components/location-browser/location-browser.component';
 import { LocationSubmitPageComponent } from '../../pages/location-submit-page/location-submit-page.component';
 import { LocationBrowsePageComponent } from '../../pages/location-browse-page/location-browse-page.component';
-import { GameComponent } from '../../components/game/game.component';
 import { GameCreateComponent } from '../../components/game-create/game-create.component';
 import { GamePageComponent } from '../../pages/game-page/game-page.component';
 import { GameCreatePageComponent } from '../../pages/game-create-page/game-create-page.component';
@@ -25,7 +24,6 @@ import { GamesListPageComponent } from '../../pages/games-list-page/games-list-p
     LocationBrowserComponent,
     LocationSubmitPageComponent,
     LocationBrowsePageComponent,
-    GameComponent,
     GamePageComponent,
     GameCreateComponent,
     GameCreatePageComponent,
