@@ -12,19 +12,22 @@ import { Comment } from '../../_models/comment';
 
 export class UserPrivateComponent {
 
-	displayComments: boolean = false;
-	@Input() user: User;
-  	@Input() locations: Location[];
-  	@Input() comments: Comment[];
+	private displayComments: boolean = false;
 
-	newUsername: string;
-	newEmail: string;
+
+	@Input() private user: User;
+  	@Input() private locations: Location[];
+  	@Input() private comments: Comment[];
+
+	private newEmail: string;
+
+	private newPassword: string;
+	private passwordVerify: string;
 
 	constructor(){ }
 
 	updateUser(){
-		this.user.username = this.newUsername;
-		this.user.email = this.newEmail;
+		
 	}
 
 }

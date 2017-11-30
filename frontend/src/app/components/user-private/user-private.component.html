@@ -52,12 +52,13 @@
     			</div>
     			<div class="modal-body">
     				<div class="form-group">
-            			<label for="usernameEdit" class="form-control-label">Username</label>
-           				<input type="text" class="form-control" id="usernameEdit" placeholder="{{user != null ? user.username : ''}}" [(ngModel)]="this.newUsername">
-          			</div>
-          			<div class="form-group">
             			<label for="emailEdit" class="form-control-label">Email</label>
-           				<input type="text" class="form-control" id="emailEdit" placeholder="{{user != null ? user.email : ''}}" [(ngModel)]="this.newEmail">
+           				<input type="text" class="form-control" id="emailEdit" placeholder="{{user != null ? user.email : ''}}" [(ngModel)]="newEmail">
+          			</div>
+    				<div class="form-group">
+            			<label for="passwordEdit" class="form-control-label">Password (both must match)</label>
+           				<input type="password" class="form-control" id="passwordEdit" [(ngModel)]="newPassword">
+           				<input type="password" class="form-control" id="confirmPassword" [(ngModel)]="passwordVerify">
           			</div>
     			</div>
     			<div class="modal-footer">
