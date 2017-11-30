@@ -5,5 +5,6 @@ export class Location {
 	description: string;
 	date_created: Date;
 	creator_username: string;
+	approved: number;
 	rating: number;
 }

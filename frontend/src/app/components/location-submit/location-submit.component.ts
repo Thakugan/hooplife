@@ -31,9 +31,6 @@ export class LocationSubmitComponent {
 
   submit() {
     this.currUser = this.profileService.getCurrentUser();
-    alert(this.currUser);
-    alert(this.address);
-    alert(this.description);
     this.locationService.requestLoc(this.currUser, this.address, this.description, this.pic).subscribe(
       res => {
         this.snackBar.open('Location request suceeded, it will show up in the list once approved', '', {
@@ -41,7 +38,7 @@ export class LocationSubmitComponent {
         });
       },
       err => {
-        this.snackBar.open('Request failed, please try again', '', {
+        this.snackBar.open('Request failed, please try again. Descriptions and addresses must be unique', '', {
           duration: 5000
         });
       }

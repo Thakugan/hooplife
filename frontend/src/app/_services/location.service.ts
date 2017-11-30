@@ -22,18 +22,18 @@ export class LocationService {
   ) { }
 
   /** POST: request a new location */
-  requestLoc (username: string, address: string, description: string, pic: string): Observable<HttpResponse<any>> {
+  requestLoc (username: string, address: string, description: string, pic?: string): Observable<HttpResponse<any>> {
     const url = `${this.apiUrl}/new-location`;
     const body = pic ? {
-      username: username,
+      creator_username: username,
       address: address,
-      description: description,
+      descriptions: description,
       picture_url: pic
-    } : 
+    } :
     {
-      username: username,
+      creator_username: username,
       address: address,
-      description: description
+      descriptions: description
     };
     return this.http.post<Response>(url,
       body,
@@ -75,7 +75,7 @@ export class LocationService {
 
   denyLocation(loc: number): Observable<Location> {
     const url = `${this.apiUrl}/location-delete/${loc}`;
-    return this.http.get<Location>(url).pipe(
+    return this.http.delete<Location>(url).pipe(
       tap(res => console.log(`found games`))
     );
   }

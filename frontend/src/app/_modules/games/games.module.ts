@@ -7,7 +7,6 @@ import { SharedModule } from '../../_modules/shared/shared.module';
 
 import { GameService } from '../../_services/game.service';
 
-import { LocationDetailsComponent } from '../../components/location-details/location-details.component';
 import { LocationDetailsPageComponent } from '../../pages/location-details-page/location-details-page.component';
 import { LocationSubmitComponent } from '../../components/location-submit/location-submit.component';
 import { LocationBrowserComponent } from '../../components/location-browser/location-browser.component';
@@ -21,7 +20,6 @@ import { GamesListPageComponent } from '../../pages/games-list-page/games-list-p
 
 @NgModule({
   declarations: [
-    LocationDetailsComponent,
     LocationDetailsPageComponent,
     LocationSubmitComponent,
     LocationBrowserComponent,

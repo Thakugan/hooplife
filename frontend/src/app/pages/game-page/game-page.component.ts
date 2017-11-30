@@ -58,7 +58,7 @@ export class GamePageComponent implements OnInit {
     const gameid = +this.route.snapshot.paramMap.get('gameid');
     this.gameService.getGame(gameid).subscribe(
       game => {
-        this.game = game;
+        this.game = game[0];
       },
       err => {
         this.game = new Game();
@@ -67,7 +67,23 @@ export class GamePageComponent implements OnInit {
   }
 
   isPlayer() {
-    this.player = true;
+    const gameid = +this.route.snapshot.paramMap.get('gameid');
+    this.gameService.getRSVPGames(this.user.username).subscribe(
+      games => {
+        for(var game of games) {
+          if(game.GameID == gameid) {
+            this.player = true;
+            return;
+          }
+        }
+
+        this.player = false;
+      },
+      err => {
+        this.player = false;
+        console.log('User does not have any rsvps');
+      }
+    );
   }
 
   getPlayers() {

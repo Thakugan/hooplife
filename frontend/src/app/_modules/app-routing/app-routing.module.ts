@@ -15,6 +15,7 @@ import { LocationBrowsePageComponent } from '../../pages/location-browse-page/lo
 import { GamePageComponent } from '../../pages/game-page/game-page.component';
 import { GameCreatePageComponent } from '../../pages/game-create-page/game-create-page.component';
 import { GamesListPageComponent } from '../../pages/games-list-page/games-list-page.component';
+import { ApproveLocationsComponent } from '../../components/approve-locations/approve-locations.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard/games', pathMatch: 'full' },
@@ -30,6 +31,7 @@ const routes: Routes = [
       { path: 'location/:locID', component: LocationDetailsPageComponent, canActivate: [AuthGuard] },
       { path: 'locationSubmit', component: LocationSubmitPageComponent, canActivate: [AuthGuard] },
       { path: 'user/:username', component: UserPageComponent, canActivate: [AuthGuard] },
+      { path: 'approve-locations', component: ApproveLocationsComponent, canActivate: [AuthGuard] },
     ]
   },
   { path: '**', component: DashboardComponent }
