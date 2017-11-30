@@ -88,11 +88,27 @@ export class GamePageComponent implements OnInit {
   }
 
   getPlayers() {
-    this.players = [];
+    const gameid = +this.route.snapshot.paramMap.get('gameid');
+    this.gameService.getGameRSVPs(gameid).subscribe(
+      players => {
+        this.players = players;
+      },
+      err => {
+        this.players = [];
+      }
+    );
   }
 
   getComments() {
-    this.comments = [];
+    const gameid = +this.route.snapshot.paramMap.get('gameid');
+    this.profileService.getComments("game", gameid).subscribe(
+      comments => {
+        this.comments = comments;
+      },
+      err => {
+        this.comments = [];
+      }
+    );
   }
 
   getLocation() {

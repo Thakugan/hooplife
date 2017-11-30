@@ -20,7 +20,7 @@ export class UserPageComponent implements OnInit {
 	isPublic: boolean;
   userFound: boolean = false;
   user: User;
-  comments: Comment[] = [];
+  comments: Comment[];
 
 	constructor(
     private route: ActivatedRoute,
@@ -31,6 +31,7 @@ export class UserPageComponent implements OnInit {
 
 	ngOnInit() {
     this.getUser();
+    this.getComments();
 	}
 
   getUser() {
@@ -44,6 +45,18 @@ export class UserPageComponent implements OnInit {
       },
       err => {
         this.user = new User();
+      }
+    );
+  }
+
+  getComments() {
+    const username = this.route.snapshot.paramMap.get('username');
+    this.profileService.getComments("user", username).subscribe(
+      comments => {
+        this.comments = comments;
+      },
+      err => {
+        this.comments = [];
       }
     );
   }

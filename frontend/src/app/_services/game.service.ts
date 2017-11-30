@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
 
 import { Game } from '../_models/game';
 import { User } from '../_models/user';
+import { Comment } from '../_models/comment';
 
 const headers =  new HttpHeaders({ 'Content-Type': 'application/json' });
 
@@ -75,8 +76,8 @@ export class GameService {
   }
 
   /** GET: return array of all rsvps a game has */
-  getGameRSVPs (username: string): Observable<User[]> {
-    const url = `${this.apiUrl}/rsvp/user/${username}`;
+  getGameRSVPs (gameid: number): Observable<User[]> {
+    const url = `${this.apiUrl}/rsvp/game/${gameid}`;
     return this.http.get<User[]>(url).pipe(
       tap(res => console.log(`found user rsvp'd to this game`))
     );

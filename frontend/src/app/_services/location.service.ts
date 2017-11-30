@@ -9,6 +9,7 @@ import { KJUR } from 'jsrsasign';
 import { environment } from '../../environments/environment';
 
 import { Location } from '../_models/location';
+import { Comment } from '../_models/comment';
 
 const headers =  new HttpHeaders({ 'Content-Type': 'application/json' });
 

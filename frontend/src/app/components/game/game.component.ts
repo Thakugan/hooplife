@@ -30,7 +30,8 @@ export class GameComponent implements OnInit {
   newComment: Comment = new Comment();
 
 	constructor(
-    private gameService: GameService
+    private gameService: GameService,
+    private snackBar: MatSnackBar
   ) {
 
 	}
@@ -43,23 +44,41 @@ export class GameComponent implements OnInit {
 	}
 
 	addComment(){
-		this.newComment.userName = this.currUser.username;
-		this.newComment.date = new Date();
+		this.newComment.username = this.currUser.username;
 		this.newComment.rating = 0;
-		this.newComment.showRating = false;
-
-
 	}
 
   handlePlayer(){
-    /*if(this.isPlayer){
-      this.gameService.deleteRSVP().subscribe(
-        res =>
+    if(this.isPlayer){
+      this.gameService.deleteRSVP(this.currUser.username, this.game.GameID).subscribe(
+        res => {
+          this.isPlayer = false;
+          this.snackBar.open("You have canceled your rsvp to this game", '', {
+            duration: 5000
+          });
+        },
+        err => {
+          this.snackBar.open('Could not delete rsvp, please try again', '', {
+            duration: 5000
+          });
+        }
       );
     }
     else{
-
-    }*/
+      this.gameService.rsvp(this.currUser.username, this.game.GameID).subscribe(
+        res => {
+          this.isPlayer = true;
+          this.snackBar.open("You have rsvp'd to this game", '', {
+            duration: 5000
+          });
+        },
+        err => {
+          this.snackBar.open('Could not rsvp, please try again', '', {
+            duration: 5000
+          });
+        }
+      );
+    }
   }
 
 }

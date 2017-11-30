@@ -24,7 +24,7 @@
 			<div class="mt-3">Minimum Rating: <rating [ratingValue]="game.minimum_rank ? game.minimum_rank : 1"></rating></div>
 			<hr />
 			<p>Date and Time: {{game.date_of_game}}</p>
-			<p>Number of Players: {{players.length}}</p>
+			<p>Number of Players: {{players ? players.length : 0}}</p>
 			<button type="button" class="btn btn-info" data-toggle="modal" data-target="#players-modal">View Players</button>
 		</div>
 	</div>
@@ -37,7 +37,7 @@
 						<span>&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body" *ngIf="players != null">
 					<div class="player-list" *ngIf="players.length > 0">
 						<div class="players" *ngFor="let player of players">
 							<div class="card w-100" (click)="visitPlayer(player.id)">
@@ -69,7 +69,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" *ngIf="comments != null">
 		<div class="col-md-12">
 			<!-- Comments -->
 			<div class="card mt-3 mb-3" id="comment-section">

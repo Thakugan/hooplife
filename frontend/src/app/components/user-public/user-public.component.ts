@@ -31,15 +31,10 @@ export class UserPublicComponent{
 
   // TODO change this to hit the api
 	addComment() {
-      this.newComment.userName = this.currentUser;
-      this.newComment.date = new Date();
-
-      this.newComment = new Comment();
-      this.hasCommented = true;
-    }
-
-    processRating(num: number){
-      this.newComment.rating = num;
-      this.hasRated = true;
-    }
   }
+
+  processRating(num: number){
+    this.newComment.rating = num;
+    this.hasRated = true;
+  }
+}
