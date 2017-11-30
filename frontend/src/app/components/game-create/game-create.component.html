@@ -51,14 +51,14 @@
 						<label for="minute-dropdown">Minute</label>
 						<select #game_minute class="form-control" id="minute" name="minute" [(ngModel)]="minute" required>
 							<option></option>
-							<option *ngFor="let min of ['00', '15', '30', '45']" [ngValue]="minute">{{min}}</option>
+							<option *ngFor="let min of ['00', '15', '30', '45']" [ngValue]="min">{{min}}</option>
 						</select>
 					</div>
 					<div class="col-md-3">
 						<label for="amORpm-dropdown">AM or PM</label>
 						<select #game_amORpm class="form-control" id="amORpm" name="amORpm" [(ngModel)]="amORpm" required>
 							<option></option>
-							<option *ngFor="let aOp of ['AM', 'PM']" [ngValue]="amORpm">{{aOp}}</option>
+							<option *ngFor="let aOp of ['AM', 'PM']" [ngValue]="aOp">{{aOp}}</option>
 						</select>
 					</div>
 					<div class="col-md-3">
