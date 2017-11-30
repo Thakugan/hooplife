@@ -52,14 +52,14 @@ export class GameComponent implements OnInit {
 	}
 
   handlePlayer(){
-    if(this.isPlayer){
+    /*if(this.isPlayer){
       this.gameService.deleteRSVP().subscribe(
         res =>
       );
     }
     else{
 
-    }
+    }*/
   }
 
 }

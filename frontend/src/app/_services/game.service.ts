@@ -23,27 +23,17 @@ export class GameService {
   ) { }
 
   /** POST: create a new game */
-  makeGame (username: string, date_of_game: string, description: string, minimum_rank: number, location_id: number, pic?: string): Observable<HttpResponse<any>> {
-    const url = `${this.apiUrl}/new-location`;
-    const body = pic ? {
-      picture_url: pic,
-      description: description,
+  makeGame (username: string, game_date: string, des: string, min_rank: number, loc_id: number): Observable<HttpResponse<any>> {
+    const url = `${this.apiUrl}/new-game`;
+    const body = {
+      locationID: loc_id,
+      date_of_game: game_date,
+      description: des,
       creator_username: username,
-      date_of_game: date_of_game,
-      minimum_rank: minimum_rank,
-      locationID: location_id
-    } :
-    {
-      description: description,
-      creator_username: username,
-      date_of_game: date_of_game,
-      minimum_rank: minimum_rank,
-      locationID: location_id
+      minimum_rank: min_rank
     };
-    return this.http.post<Response>(url,
-      body,
-      {observe: 'response'}).pipe(
-      tap(res => console.log(`added game w/ description=${description}`))
+    return this.http.post<Response>(url, body, {observe: 'response'}).pipe(
+      tap(res => console.log(`added game w/ description=${des}`))
     );
   }
 

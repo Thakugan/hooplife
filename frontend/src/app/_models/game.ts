@@ -5,6 +5,6 @@ export class Game {
 	description: string;
 	time_created: Date;
 	creator_username: number;
-	date_of_game: Date;
+	date_of_game: string;
 	minimum_rank: number;
 }
