@@ -147,7 +147,8 @@ export class GamePageComponent implements OnInit {
       this.gameService.deleteRSVP(this.user.username, this.game.GameID).subscribe(
         res => {
           this.player = false;
-          this.getPlayers();
+          const gameid = +this.route.snapshot.paramMap.get('gameid');
+          this.router.navigate([`/dashboard/game/${gameid}`]);
           this.snackBar.open("You have canceled your rsvp to this game", '', {
             duration: 5000
           });

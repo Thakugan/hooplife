@@ -11,11 +11,13 @@ import { LocationService } from '../../_services/location.service';
 
 import { RatingComponent } from '../../components/rating/rating.component';
 import { CommentComponent } from '../../components/comment/comment.component';
+import { ImageUploadComponent } from '../../components/image-upload/image-upload.component';
 
 @NgModule({
   declarations: [
     RatingComponent,
-    CommentComponent
+    CommentComponent,
+    ImageUploadComponent
   ],
   imports: [
     CommonModule,

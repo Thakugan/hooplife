@@ -53,7 +53,7 @@ export class GameService {
 
   /** DELETE: delete rsvp to the game */
   deleteRSVP (username: string, game_id: number): Observable<HttpResponse<any>> {
-    const url = `${this.apiUrl}/new-location`;
+    const url = `${this.apiUrl}/delete-rsvp/${username}/${game_id}`;
     return this.http.delete<any>(url).pipe(
       tap(res => console.log(`deleted rsvp to game w/ if=${game_id}`))
     );

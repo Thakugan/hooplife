@@ -15,7 +15,7 @@ export class ImageUploadComponent {
 
     constructor(private http: HttpClient) {}
 
-    private uploadFile(fileInput: any){
+    uploadFile(fileInput: any){
         this.upload(fileInput).subscribe(x => {
             if(!x.public_id){
                 this.uploaded.emit(false);
@@ -25,17 +25,17 @@ export class ImageUploadComponent {
         });
     }
 
-    public upload(fileInput: any): Observable<CloudinaryResponse> {
+    upload(fileInput: any): Observable<CloudinaryResponse> {
         let formData: FormData = new FormData();
 
         formData.append('file', fileInput.target.files[0]);
         formData.append('upload_preset', 'knlspx3g');
-            
+
         return this.http.post<CloudinaryResponse>('https://api.cloudinary.com/v1_1/dwymiyvae/image/upload', formData, {headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')})
             .catch(x => this.handleException(x));
     }
 
-    protected handleException(exception: any) {
+    handleException(exception: any) {
         var message = `${exception.status} : ${exception.statusText}\r\n${exception.body.error}`;
         alert(message);
         this.uploaded.emit(false);
