@@ -60,10 +60,17 @@
             			<label for="emailEdit" class="form-control-label">Email</label>
            				<input type="text" class="form-control" id="emailEdit" placeholder="{{user != null ? user.email : ''}}" [(ngModel)]="this.newEmail">
           			</div>
+          			<div class="form-group">
+            			<label for="newPassword" class="form-control-label">Reset Password</label>
+           				<input type="password" class="form-control" id="newPassword" placeholder="New Password" [(ngModel)]="this.newPassword">
+          			</div>
+          			<div class="form-group">
+           				<input type="password" class="form-control" id="passwordVerify" placeholder="Retype Password" [(ngModel)]="this.passwordVerify">
+          			</div>
     			</div>
     			<div class="modal-footer">
     				<button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateUser()">Save Changes</button>
-			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Cancel</button>
 			    </div>
     		</div>
   		</div>

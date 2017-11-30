@@ -43,7 +43,7 @@ export class ProfileService {
     );
   }
 
-  /** TODO POST: change username or email */
+  /** TODO PUT: change  */
   updateUser (username: string): Observable<User> {
     const url = `${this.apiUrl}/profile/${username}`;
     console.log(url);
