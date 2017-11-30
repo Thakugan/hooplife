@@ -16,14 +16,14 @@ import { MatSnackBar } from '@angular/material';
 
 export class GameCreateComponent implements OnInit {
 
-  private locations: Location[] = [];
-  private location_id: number;
-  private game_date: Date;
-  private hour: string;
-  private minute: string;
-  private amORpm: string;
-  private minimum_rank: number;
-  private description: string;
+  locations: Location[] = [];
+  location_id: number;
+  game_date: Date;
+  hour: string;
+  minute: string;
+  amORpm: string;
+  minimum_rank: number;
+  description: string;
 
 	constructor(
     private locationService: LocationService,
@@ -35,8 +35,8 @@ export class GameCreateComponent implements OnInit {
 
   ngOnInit() {
     this.locationService.getApprovedLocations().subscribe(
-      res => { 
-        this.locations = res; 
+      res => {
+        this.locations = res;
       },
       err => {
         alert('what did you do');
@@ -52,7 +52,7 @@ export class GameCreateComponent implements OnInit {
     const current_user = this.profileService.getCurrentUser();
 
     this.gameService.makeGame(
-      current_user, 
+      current_user,
       this.game_date + ' ' + this.hour + ':' + this.minute + ' ' + this.amORpm,
       this.description,
       this.minimum_rank,

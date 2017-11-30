@@ -47,7 +47,7 @@ export class UserPublicComponent{
     );
   }
 
-  processRating(num: number){
+  onRated(num: number){
     this.newComment.rating = num;
     this.hasRated = true;
   }

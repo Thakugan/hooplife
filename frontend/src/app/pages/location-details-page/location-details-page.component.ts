@@ -73,7 +73,7 @@ export class LocationDetailsPageComponent implements OnInit {
     );
 	}
 
-  processRating(num: number){
+  onRated(num: number){
     this.newComment.rating = num;
     this.hasRated = true;
   }
