@@ -54,6 +54,7 @@ export class UserPageComponent implements OnInit {
     this.profileService.getComments("user", username).subscribe(
       comments => {
         this.comments = comments;
+        alert(JSON.stringify(this.comments));
       },
       err => {
         this.comments = [];

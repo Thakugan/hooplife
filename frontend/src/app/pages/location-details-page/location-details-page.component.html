@@ -19,7 +19,7 @@
 		<div class="col-md-12">
 			<div class="card mt-3">
 				<div class="card-header">
-					<rating [ratingValue]="0" (onRated)="processRating($event)"></rating>
+					<rating [ratingValue]="0" (onRated)="onRated($event)"></rating>
 					<p class="mt-2 float-right" *ngIf="!hasRated">If you would like to comment, please rate this location first</p>
 				</div>
 				<div class="card-body" *ngIf="hasRated && !hasCommented">
