@@ -50,16 +50,12 @@
 					</select>
 				</div>
 
-				<div class="form-check form-check-inline">
-					<label class="form-check-label">
-						<input class="form-check-input" type="checkbox" id="AMSelect" value="AM" [(ngModel)]="amORpm" name="am"> AM
-					</label>
-				</div>
-
-				<div class="form-check form-check-inline">
-					<label class="form-check-label">
-						<input class="form-check-input" type="checkbox" id="PMSelect" value="PM" [(ngModel)]="amORpm" name="pm"> PM
-				  	</label>
+				<div class="form-group">
+					<label for="amORpmDropdown">AM or PM?</label>
+					<select class="form-control" id="amORpmDropdown" [(ngModel)]="amORpm" name="amORpmDropdown">
+						<option></option>
+						<option *ngFor="let x of ['AM','PM']" [value]="x">{{x}}</option>
+					</select>
 				</div>
 
 				<button type="submit" class="btn btn-info" [disabled]="!game.location_id || !game.description || !game.minimum_rank || !game.date_of_game || !hour || !minute || !amORpm" >Create Game</button>
