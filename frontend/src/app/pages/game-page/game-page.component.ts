@@ -68,7 +68,8 @@ export class GamePageComponent implements OnInit {
 
   isPlayer() {
     const gameid = +this.route.snapshot.paramMap.get('gameid');
-    this.gameService.getRSVPGames(this.user.username).subscribe(
+    const currentUser = this.profileService.getCurrentUser();
+    this.gameService.getRSVPGames(currentUser).subscribe(
       games => {
         for(var game of games) {
           if(game.GameID == gameid) {
