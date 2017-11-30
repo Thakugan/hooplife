@@ -1,4 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+
+import { LocationService } from '../../_services/location.service';
+
+import { Location } from '../../_models/location';
+
 import { LocationBrowserComponent } from '../../components/location-browser/location-browser.component';
 
 @Component({
@@ -9,12 +14,24 @@ import { LocationBrowserComponent } from '../../components/location-browser/loca
 
 export class LocationBrowsePageComponent implements OnInit {
 
-	private loadPage: boolean = true;
+	loadPage: boolean = true;
+  locations: Location[];
 
-	constructor() {
+	constructor(
+    private locationService: LocationService
+  ) {
 	}
 
-  	ngOnInit() {
-  	}
+	ngOnInit() {
+    this.getApprovedLocations();
+	}
+
+  getApprovedLocations() {
+    this.locationService.getApprovedLocations().subscribe(
+      locations => {
+        this.locations = locations;
+      }
+    );
+  }
 
 }

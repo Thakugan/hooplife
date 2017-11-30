@@ -8,12 +8,14 @@ import { SharedModule } from '../../_modules/shared/shared.module';
 import { UserPageComponent } from '../../pages/user-page/user-page.component';
 import { UserPrivateComponent } from '../../components/user-private/user-private.component';
 import { UserPublicComponent } from '../../components/user-public/user-public.component';
+import { ApproveLocationsComponent } from '../../components/approve-locations/approve-locations.component';
 
 @NgModule({
   declarations: [
     UserPrivateComponent,
     UserPublicComponent,
-    UserPageComponent
+    UserPageComponent,
+    ApproveLocationsComponent
   ],
   imports: [
     CommonModule,

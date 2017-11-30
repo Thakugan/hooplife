@@ -1,11 +1,11 @@
-<div class="game-component">
+<div class="game-component mt-4">
 	<div class="row">
 		<div class="col-md-4">
 			<!-- Location Card -->
 			<div class="card">
-				<img class="card-img-top" src="{{location.imageUrl}}" alt="Location image">
+				<img class="card-img-top" src="{{location.picture_url ? location.picture_url : 'https://x.kinja-static.com/assets/images/logos/placeholders/default.png'}}" alt="Location image">
 				<div class="card-body text-centered">
-					<h3>location.name</h3>
+					<h3>{{location.description}}</h3>
 					<rating [ratingValue]="5"></rating>
 				</div>
 			</div>
@@ -13,19 +13,19 @@
 		<div class="col-md-8">
 			<!-- Game Info -->
 			<span>
-				<h2>{{game.name}}</h2>
+				<h2>{{game.description}}</h2>
 				<span *ngIf="isPlayer">
-					<button type="button" class="btn btn-primary" (click)="handlePlayer()">In the roster! (Click to remove yourself)</button>
+					<button type="button" class="btn btn-info" (click)="handlePlayer()">In the roster! (Click to remove yourself)</button>
 				</span>
 				<span *ngIf="!isPlayer">
-					<button type="button" class="btn btn-primary" (click)="handlePlayer()">Click to register to this game!</button>
+					<button type="button" class="btn btn-info" (click)="handlePlayer()">Click to register to this game!</button>
 				</span>
 			</span>
-			<span>Minimum Rank: <rating [ratingValue]="3"></rating></span>
+			<div class="mt-3">Minimum Rank: <rating [ratingValue]="game.minimum_rank ? game.minimum_rank : 1"></rating></div>
 			<hr />
-			<p>game.date</p>
-			<p>game.numOfPlayers</p>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#players-modal">View Players</button>
+			<p>Date and Time: {{game.date_of_game}}</p>
+			<p>Number of Players: {{players.length}}</p>
+			<button type="button" class="btn btn-info" data-toggle="modal" data-target="#players-modal">View Players</button>
 		</div>
 	</div>
 	<div class="modal fade" id="players-modal" tabindex="-1" role="dialog">
@@ -38,7 +38,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="player-list" *ngIf="numOfPlayers > 0">
+					<div class="player-list" *ngIf="players.length > 0">
 						<div class="players" *ngFor="let player of players">
 							<div class="card w-100" (click)="visitPlayer(player.id)">
 								<div class="card-body">
@@ -62,7 +62,7 @@
 						<label for="commentInput">Comment</label>
 						<textarea class="form-control" id="commentInput" rows="3" required [(ngModel)]="newComment.commentText"></textarea>
 					</div>
-					<button type="submit" class="btn btn-primary" (click)="addComment()">
+					<button type="submit" class="btn btn-info" (click)="addComment()">
 						Submit
 					</button>
 				</div>
@@ -74,16 +74,16 @@
 			<!-- Comments -->
 			<div class="card mt-3 mb-3" id="comment-section">
 				<div class="card-header" id="commentHeader" (click)="displayComments=!displayComments">
-					<p class="text-center comments-indicator">Comments ({{game.comments.length}})</p>
+					<p class="text-center comments-indicator">Comments ({{comments.length}})</p>
 					<p class="text-center arrow-down"></p>
 				</div>
 
-				<div class="card-body pb-3" id="noCommentsDialog" *ngIf="game.comments.length < 1">
+				<div class="card-body pb-3" id="noCommentsDialog" *ngIf="comments.length < 1">
 					<p>Be the first to write a comment!</p>
 				</div>
 
 				<div class="card-body pb-3" id="CommentList" *ngIf="displayComments">
-					<div *ngFor="let com of game.comments">
+					<div *ngFor="let com of comments">
 						<comment-block [comment]="com"></comment-block>
 					</div>
 				</div>

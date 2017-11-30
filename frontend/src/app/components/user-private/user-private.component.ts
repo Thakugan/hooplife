@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { User } from '../../_models/user';
+import { Location } from '../../_models/location';
 import { Comment } from '../../_models/comment';
 
 import { MatSnackBar } from '@angular/material';
@@ -15,7 +16,12 @@ export class UserPrivateComponent {
 
 	displayComments: boolean = false;
 	@Input() user: User;
+<<<<<<< HEAD
   	@Input() comments: Comment[];
+=======
+  @Input() locations: Location[];
+  @Input() comments: Comment[];
+>>>>>>> master
 
 	newUsername: string;
 	newEmail: string;

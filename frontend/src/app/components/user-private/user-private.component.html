@@ -1,14 +1,14 @@
-<div class="container-fluid" id="userPrivate">
+<div class="container-fluid" id="userPrivate" *ngIf="user != null">
 	<div class="card mt-3">
 		<div class="card-block">
 			<div class="row">
 				<div class="col-md-4">
-					<img class="img-fluid" [src]="(user.pic_url ? user.pic_url : 'http://via.placeholder.com/500x500')" alt="my beautiful face">
+					<img class="img-fluid" [src]="(user.pic_url ? user.pic_url : 'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png')" alt="my beautiful face">
 				</div>
 				<div class="col-md-8">
 					<h3 class="mt-3 lead username">{{user.username + '  (' + user.first_name + ' ' + user.last_name + ')'}}</h3>
 					<button class="btn btn-info mt-2 mr-2 float-right" data-toggle="modal" data-target=".editUserModal"><span class="editIcon"></span> Edit Info</button>
-					<rating [ratingValue]="user.rating ? user.rating : 1" class="clearfix"></rating>
+					<rating [ratingValue]="user.rating ? user.rating : '0'" class="clearfix"></rating>
 					<hr class="mr-3"/>
 					<p class="mr-3">Average User Rating: {{(user.rating ? user.rating + ' / 5' : 'N/A')}}</p>
 					<p class="mr-3">Year: {{user.year ? user.year : 'N/A'}}</p>
@@ -20,7 +20,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
+
+	<div *ngIf="user.isAdmin == 1" class="mt-3">
+		<approve-locations></approve-locations>
+	</div>
+
+	<div class="row clearfix">
 		<div class="col-md-12">
 			<div class="card mt-3 mb-3" id="comment-section">
 				<div class="card-header" id="commentHeader" (click)="displayComments=!displayComments">
@@ -49,11 +54,11 @@
     			<div class="modal-body">
     				<div class="form-group">
             			<label for="usernameEdit" class="form-control-label">Username</label>
-           				<input type="text" class="form-control" id="usernameEdit" placeholder="{{user.username}}" [(ngModel)]="this.newUsername">
+           				<input type="text" class="form-control" id="usernameEdit" placeholder="{{user != null ? user.username : ''}}" [(ngModel)]="this.newUsername">
           			</div>
           			<div class="form-group">
             			<label for="emailEdit" class="form-control-label">Email</label>
-           				<input type="text" class="form-control" id="emailEdit" placeholder="{{user.email}}" [(ngModel)]="this.newEmail">
+           				<input type="text" class="form-control" id="emailEdit" placeholder="{{user != null ? user.email : ''}}" [(ngModel)]="this.newEmail">
           			</div>
           			<div class="form-group">
             			<label for="newPassword" class="form-control-label">Reset Password</label>

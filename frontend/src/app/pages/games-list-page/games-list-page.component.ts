@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { GameService } from '../../_services/game.service';
+import { ProfileService } from '../../_services/profile.service';
 
 import { Game } from '../../_models/game';
 
@@ -19,7 +20,8 @@ export class GamesListPageComponent implements OnInit {
 
 	constructor(
     private router: Router,
-    private gameService: GameService
+    private gameService: GameService,
+    private profileService: ProfileService
   ) {
 	}
 
@@ -34,6 +36,18 @@ export class GamesListPageComponent implements OnInit {
       },
       err => {
         console.log("Error getting all games");
+      }
+    );
+  }
+
+  getAttendingGames() {
+    var currentUser = this.profileService.getCurrentUser();
+    this.gameService.getRSVPGames(currentUser).subscribe(
+      games => {
+        this.attendingGames = games;
+      },
+      err => {
+        console.log("Error getting rsvp'd games");
       }
     );
   }

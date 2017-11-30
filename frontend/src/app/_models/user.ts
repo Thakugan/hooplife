@@ -9,7 +9,7 @@ export class User {
 	last_updated: Date;
 	last_login: Date;
 	year: string;
-	isAdmin: boolean;
+	isAdmin: number;
 	ranking: string;
 	rating: number;
 	wins: number;

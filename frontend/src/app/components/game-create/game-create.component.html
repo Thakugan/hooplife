@@ -5,11 +5,11 @@
 		</div>
 		<div class="card-body">
 			<form #gameForm="ngForm" (ngSubmit)="createGame(); gameForm.reset()">
-				<div *ngIf="!haveLocations">
+				<div *ngIf="!hasLocations">
 					<p>No locations to choose from!<p>
 				</div>
 
-				<div *ngIf="haveLocations">
+				<div *ngIf="hasLocations">
 					<div class="form-group">
 					    <label for="location-select">Location</label>
 					    <select class="form-control" id="location-select" [(ngModel)]="game.location_id" name="location-select">
@@ -62,7 +62,7 @@
 				  	</label>
 				</div>
 
-				<button type="submit" class="btn btn-info" [disabled]="!game.location_id || !game.description || !game.minimum_rating || !game.date_of_game || !hour || !minute || !amOrpm" >Create Game</button>
+				<button type="submit" class="btn btn-info" [disabled]="!game.location_id || !game.description || !game.minimum_rank || !game.date_of_game || !hour || !minute || !amORpm" >Create Game</button>
 
 			</form>
 		</div>

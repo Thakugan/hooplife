@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RatingComponent } from '../rating/rating.component';
+
 import { Comment } from '../../_models/comment';
 import { User } from '../../_models/user';
 import { Game } from '../../_models/game';
-import { Player } from '../../_models/player';
+import { Location } from '../../_models/location';
+
+import { RatingComponent } from '../rating/rating.component';
 
 @Component({
   selector: 'game',
@@ -13,42 +15,44 @@ import { Player } from '../../_models/player';
 
 export class GameComponent implements OnInit {
 
-	private displayComments: boolean = false;
-  private isPlayer: boolean = false;
+	displayComments: boolean = false;
 
-	private game: Game = new Game();
-	private user: User = new User();
-  private players: Player[] = [];
+  @Input() isPlayer: boolean;
+	@Input() game: Game;
+  @Input() currUser: User;
+  @Input() players: User[];
+  @Input() comments: Comment[];
+  @Input() location: Location;
 
-	private newComment: Comment = new Comment();
+  newComment: Comment = new Comment();
 
 	constructor() {
 
 	}
 
-  	ngOnInit() {
-  	}
+	ngOnInit() {
+	}
 
-  	private visitPlayer(id: number){
+	visitPlayer(id: number){
 
-  	}
+	}
 
-  	private addComment(){
-  		this.newComment.userName = this.user.username;
-  		this.newComment.date = new Date();
-  		this.newComment.rating = 0;
-  		this.newComment.showRating = false;
+	addComment(){
+		this.newComment.userName = this.currUser.username;
+		this.newComment.date = new Date();
+		this.newComment.rating = 0;
+		this.newComment.showRating = false;
 
 
-  	}
+	}
 
-    private handlePlayer(){
-      if(this.isPlayer){
+  handlePlayer(){
+    if(this.isPlayer){
 
-      }
-      else{
-
-      }
     }
+    else{
+
+    }
+  }
 
 }

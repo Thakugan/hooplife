@@ -44,8 +44,8 @@ export class NavigationComponent implements OnInit {
         "url": "games"
       },
       {
-        "name": "add a location",
-        "url": "locationSubmit"
+        "name": "locations",
+        "url": "locations"
       }
     ]
   }
