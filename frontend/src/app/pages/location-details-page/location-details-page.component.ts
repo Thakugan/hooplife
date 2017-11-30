@@ -14,13 +14,13 @@ import { Comment } from '../../_models/comment';
 })
 export class LocationDetailsPageComponent implements OnInit {
 
-  place: Location;
-  comments: Comment[];
-  displayComments: boolean = true;
-  hasRated: boolean;
-  hasCommented: boolean;
+  private place: Location;
+  private comments: Comment[];
+  private displayComments: boolean = false;
+  private hasRated: boolean;
+  private hasCommented: boolean;
 
-  newComment: Comment = new Comment();
+  private newComment: Comment = new Comment();
 
   constructor(
     private route: ActivatedRoute,

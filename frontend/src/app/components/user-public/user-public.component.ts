@@ -12,11 +12,11 @@ import { ProfileService } from '../../_services/profile.service';
 
 export class UserPublicComponent{
 
-	displayComments: boolean = true;
-	currentUser: string;
-	hasCommented: boolean = false;
-	hasRated: boolean = false;
-	newComment: Comment = new Comment();
+	private displayComments: boolean = false;
+	private currentUser: string;
+	private hasCommented: boolean = false;
+	private hasRated: boolean = false;
+	private newComment: Comment = new Comment();
 
 	@Input() public user: User;
   @Input() comments: Comment[];

@@ -41,7 +41,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-12" *ngIf="comments != null">
 			<div class="card mt-3 mb-3" id="comment-section">
 				<div class="card-header" id="commentHeader" (click)="displayComments=!displayComments">
 					<p class="text-center comments-indicator">Comments ({{comments.length}})</p>

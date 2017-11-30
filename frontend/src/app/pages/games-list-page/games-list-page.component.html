@@ -3,7 +3,7 @@
 	<button type="button" class="btn btn-info" [disabled]="!allGamesActive" (click)="attendingGamesToggle()">Games I'm Attending</button>
   <button type="button" class="btn btn-outline-dark float-right" (click)="openNewGamePage()">NEW GAME</button>
 	<hr />
-	<div *ngIf="allGamesActive" class="clearfix">
+	<div *ngIf="allGamesActive" class="clearfix mb-3">
 		<div *ngFor="let game of allGames">
 			<div class="card w-100">
 				<div class="card-body">
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 	</div>
-	<div *ngIf="!allGamesActive">
+	<div *ngIf="!allGamesActive" mb-3>
 		<div *ngFor="let game of attendingGames">
 			<div class="card w-100">
 				<div class="card-body">

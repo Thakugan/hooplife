@@ -14,8 +14,8 @@ export class UserPrivateComponent {
 
 	displayComments: boolean = false;
 	@Input() user: User;
-  @Input() locations: Location[];
-  @Input() comments: Comment[];
+  	@Input() locations: Location[];
+  	@Input() comments: Comment[];
 
 	newUsername: string;
 	newEmail: string;
