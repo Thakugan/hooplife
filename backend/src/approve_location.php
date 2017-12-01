@@ -32,8 +32,11 @@ $app->get('/locapprove[/{AdminUsername}[/{locid}]]', function($request, $respons
   $check = $this->db->prepare("UPDATE location SET approved='1' WHERE locationID=:locid ");
   $check->bindParam("locid", $args['locid']);
   $check->execute();
-  return $response->withStatus(200);
-  }
+//  return $response->withStatus(200);
+ $data = array(‘success’ => ‘true’);
+
+       return $response->withJson($data, 200); 
+ }
 
   }
 

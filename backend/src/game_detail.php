@@ -25,15 +25,18 @@ $app->get('/game/{id}', function(Request $request, Response $response, array $ar
 // Submit a new game
 $app->post('/new-game', function(Request $request, Response $response){
   $input = $request->getParsedBody();
-  $pdo = $this->db->prepare("INSERT INTO games (picture_url, description, time_created, creator_username, date_of_game, minimum_rank, locationID) VALUES (:picture_url, :description, CURRENT_TIMESTAMP, :creator_username, :date_of_game, :minimum_rank, :locationID)");
-  $pdo->bindParam("picture_url", $input["picture_url"]);
+  $pdo = $this->db->prepare("INSERT INTO games (description, time_created, creator_username, date_of_game, minimum_rank, locationID) VALUES (:description, CURRENT_TIMESTAMP, :creator_username, :date_of_game, :minimum_rank, :locationID)");
+ // $pdo->bindParam("picture_url", $input["picture_url"]);
   $pdo->bindParam("locationID", $input["locationID"]);
+  $pdo->bindParam("date_of_game", $input["date_of_game"]);
   $pdo->bindParam("description", $input["description"]);
   $pdo->bindParam("creator_username", $input["creator_username"]);
-  $pdo->bindParam("date_of_game", $input["date_of_game"]);
   $pdo->bindParam("minimum_rank", $input["minimum_rank"]);
   $pdo->execute();
-        return $this->response->withStatus(200);
+//        return $this->response->withStatus(200);
+ $data = array(‘success’ => ‘true’);
+
+       return $response->withJson($data, 200);
 });
 
 // Update game details
@@ -47,5 +50,9 @@ $app->put('/game/{GameID}/edit', function(Request $request, Response $response, 
   $pdo->bindParam("date_of_game", $input["date_of_game"]);
   $pdo->bindParam("minimum_rank", $input["minimum_rank"]);
   $pdo->execute();
-        return $this->response->withStatus(200);
+ //       return $this->response->withStatus(200); $data = array(‘success’ => ‘true’);
+
+        $data = array(‘success’ => ‘true’);
+
+       return $response->withJson($data, 200);
 });

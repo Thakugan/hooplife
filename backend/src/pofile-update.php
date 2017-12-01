@@ -44,7 +44,9 @@ $app->put('/profile-update/[{id}]', function(Request $request, Response $respons
    $sth->bindParam("yr", $year);
    $sth->bindParam("pic", $pic_url);
         $sth->execute();
-        return $response->withStatus(200);
+//        return $response->withStatus(200);
+ $data = array(‘success’ => ‘true’);
 
+       return $response->withJson($data, 200);
 });
                                                                                                                                                                                                         

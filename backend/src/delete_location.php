@@ -9,5 +9,8 @@ $app->delete('/location-delete/[{locationID}]', function (Request $request, Resp
   $pdo->bindParam("locationID", $args["locationID"]);
   $pdo->execute();
    // return $this->response->withJson($response->getStatusCode());
-   return $response->withStatus(200);
+//   return $response->withStatus(200);
+ $data = array(‘success’ => ‘true’);
+
+       return $response->withJson($data, 200);
 });

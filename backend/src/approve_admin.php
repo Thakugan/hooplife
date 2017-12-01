@@ -23,7 +23,9 @@ $app->get('/setadmin[/{AdminUsername}[/{username}]]', function($request, $respon
   $check->bindParam("username", $args['username']);
   $check->execute();
   
-  return $response->withStatus(200);
+//  return $response->withStatus(200);
+ $data = array(‘success’ => ‘true’);
 
+       return $response->withJson($data, 200);
 });
 

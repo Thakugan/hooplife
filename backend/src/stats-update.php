@@ -34,8 +34,10 @@ $app->put('/rank-update/[{uid}]', function(Request $request, Response $response,
        $stmt->bindParam("uid", $args['uid']);
        $stmt->bindParam("ranking", $ranking);
        $stmt->execute();
-        return $response->withStatus(200);
+//        return $response->withStatus(200);
+ $data = array(‘success’ => ‘true’);
 
+       return $response->withJson($data, 200);
 }
 });
 
@@ -70,14 +72,17 @@ $app->put('/games-played-update/[{uid}]', function(Request $request, Response $r
        $stmt->bindParam("uid", $args['uid']);
        $stmt->bindParam("num_of_games_played", $num_of_games_played);
        $stmt->execute();
-        return $response->withStatus(200);
 
+//        return $response->withStatus(200);
+ $data = array(‘success’ => ‘true’);
+
+       return $response->withJson($data, 200);
 }
 });
 
 
 // update player rating
-$app->put('/rating-update/[{uid}]', function(Request $request, Response $response, array $args){
+$app->put('/rating-update/{type}/{uid}', function(Request $request, Response $response, array $args){
 
   $data = json_decode(file_get_contents("php://input"));
   $rating = $data->rating;
@@ -90,6 +95,22 @@ $app->put('/rating-update/[{uid}]', function(Request $request, Response $respons
 
   return $response->withStatus(403);
   }
+   
+  // if ($args['type'] == "location") {
+   // $stmt = "(update location SET rating=:rating Where locationID=:uid";
+    // $stmt->bindParam("uid", $args['uid']);
+     //  $stmt->bindParam("rating", $rating);
+      // $stmt->execute();
+
+    // $data = array(‘success’ => ‘true’);
+
+//       return $response->withJson($data, 200);
+
+  // }  
+//    else 
+
+if ($args['type'] == "user") {
+
 
   $pdo = $this->db->prepare('SELECT *  FROM users WHERE username=:uid');
   $pdo->bindParam("uid", $args['uid']);
@@ -106,9 +127,15 @@ $app->put('/rating-update/[{uid}]', function(Request $request, Response $respons
        $stmt->bindParam("uid", $args['uid']);
        $stmt->bindParam("rating", $rating);
        $stmt->execute();
-        return $response->withStatus(200);
+       // return $response->withStatus(200);
+ $data = array(‘success’ => ‘true’);
+
+       return $response->withJson($data, 200);
+}
 
 }
+
+
 });
 
 
@@ -142,8 +169,10 @@ $app->put('/wins-update/[{uid}]', function(Request $request, Response $response,
        $stmt->bindParam("uid", $args['uid']);
        $stmt->bindParam("wins", $wins);
        $stmt->execute();
-        return $response->withStatus(200);
+       // return $response->withStatus(200);
+ $data = array(‘success’ => ‘true’);
 
+       return $response->withJson($data, 200);
 }
 });
 
@@ -177,7 +206,10 @@ $app->put('/losses-update/[{uid}]', function(Request $request, Response $respons
        $stmt->bindParam("uid", $args['uid']);
        $stmt->bindParam("losses", $losses);
        $stmt->execute();
-        return $response->withStatus(200);
 
+//        return $response->withStatus(200);
+ $data = array(‘success’ => ‘true’);
+
+       return $response->withJson($data, 200);
 }
 });

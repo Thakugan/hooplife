@@ -39,8 +39,10 @@ $app->put('/change-password/[{uid}]', function(Request $request, Response $respo
       $stmt->bindParam("uid", $args['uid']);
       $stmt->bindParam("hnew_password", $hnew_password);
       $stmt->execute();
-        return $response->withStatus(200);
+//        return $response->withStatus(200);
+ $data = array(‘success’ => ‘true’);
 
+       return $response->withJson($data, 200);
 }
 });
 

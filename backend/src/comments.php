@@ -7,11 +7,11 @@ use Slim\Http\Response;
 // Show all comments for a game, location, or user
 $app->get('/{type}/{id}/comments', function(Request $request, Response $response, array $args){
   if ($args['type'] == "game") {
-    $sql = "SELECT * FROM comments JOIN games WHERE comments.GameID=games.GameID AND comments.GameID=:id ORDER BY Date";
+    $sql = "SELECT username, comments.rating, Date, Comment, comments.GameID from comments JOIN games WHERE comments.GameID=games.GameID AND comments.GameID=:id ORDER BY Date";
   } else if ($args['type'] == "location") {
-    $sql = "SELECT * FROM comments JOIN location WHERE comments.locationID=location.locationID AND comments.locationID=:id ORDER BY Date";
+    $sql = "SELECT comments.username, comments.rating, Date, Comment, comments.locationID from comments JOIN location WHERE comments.locationID=location.locationID AND comments.locationID=:id ORDER BY Date";
   } else if ($args['type'] == "user") {
-    $sql = "SELECT * FROM comments JOIN users WHERE comments.username=users.username AND comments.target_username=:id ORDER BY Date";
+    $sql = "SELECT comments.username, comments.rating, Date, Comment, target_username FROM comments JOIN users WHERE comments.username=users.username AND comments.target_username=:id ORDER BY Date";
   } else {
     return $this->response->withStatus(404);
   }
@@ -23,25 +23,28 @@ $app->get('/{type}/{id}/comments', function(Request $request, Response $response
 });
 
 // Post a new comment
-$app->post('/{type}/{id}/new-comment', function(Request $request, Response $response, array $args){
+$app->post('/newcomment', function(Request $request, Response $response, array $args){
   $input = $request->getParsedBody();
-  if ($args['type'] == "game") {
-    $sql = "INSERT INTO comments (username, Comment, Date, URL, target_id, GameID) VALUES (:username, :Comment, CURRENT_TIMESTAMP, :URL, :target_id, :id)";
-  } else if ($args['type'] == "location") {
-    $sql = "INSERT INTO comments (username, Comment, Date, URL, target_id, locationID) VALUES (:username, :Comment, CURRENT_TIMESTAMP, :URL, :target_id, :id)";
-  } else if ($args['type'] == "user") {
-    $sql = "INSERT INTO comments (username, Comment, Date, URL, target_id, target_username) VALUES (:username, :Comment, CURRENT_TIMESTAMP, :URL, :target_id, :id)";
+  if ($input['type'] == "game") {
+   $sql = "INSERT INTO comments (username, Comment, Date, GameID, rating) VALUES (:username, :Comment, CURRENT_TIMESTAMP, :id, :rating)";
+  } else if ($input['type'] == "location") {
+    $sql = "INSERT INTO comments (username, Comment, Date,  locationID, rating) VALUES (:username, :Comment, CURRENT_TIMESTAMP,  :id, :rating)";
+  } else if ($input['type'] == "user") {
+    $sql = "INSERT INTO comments (username, Comment, Date, target_username, rating) VALUES (:username, :Comment, CURRENT_TIMESTAMP, :id, :rating)";
   } else {
     return $this->response->withStatus(404);
   }
   $pdo = $this->db->prepare($sql);
   $pdo->bindParam("username", $input["username"]);
   $pdo->bindParam("Comment", $input["Comment"]);
-  $pdo->bindParam("URL", $input["URL"]);
-  $pdo->bindParam("target_id", $input["target_id"]);
+  $pdo->bindParam("rating", $input["rating"]);
+   // $pdo->bindParam("target_id", $input["target_id"]);
   $pdo->bindParam("id", $input["id"]);
   $pdo->execute();
-        return $this->response->withStatus(200);
+//        return $this->response->withStatus(200);
+ $data = array(‘success’ => ‘true’);
+
+       return $response->withJson($data, 200);
 });
 
 // Update a comment
@@ -52,7 +55,10 @@ $app->put('/{type}/{id}/comments/{CommentID}/edit', function(Request $request, R
   $pdo->bindParam("Comment", $input["Comment"]);
   $pdo->bindParam("CommentID", $input["CommentID"]);
   $pdo->execute();
-        return $this->response->withStatus(200);
+//        return $this->response->withStatus(200);
+ $data = array(‘success’ => ‘true’);
+
+       return $response->withJson($data, 200);
 });
 
 // Delete a comment
@@ -60,5 +66,8 @@ $app->delete('/{type}/{id}/delete-comment/{CommentID}', function (Request $reque
   $pdo = $this->db->prepare("DELETE FROM comments WHERE CommentID=:CommentID");
   $pdo->bindParam("CommentID", $args["CommentID"]);
   $pdo->execute();
-        return $this->response->withStatus(200);
+      //  return $this->response->withStatus(200);
+ $data = array(‘success’ => ‘true’);
+
+       return $response->withJson($data, 200);
 });

@@ -35,19 +35,18 @@ $app->get('/profile/{username}', function (Request $request, Response $response,
 	//Fetch comments on the user's page
 	
 	//If there are comments, add them to the targetUser object
-	$commentsQuery = $db->prepare("SELECT Comment, Date, username, target_id, target_username, URL FROM comments WHERE target_username =:username");
-	$commentsQuery->bindParam("username", $args['username']);
-	$commentsQuery->execute();
-	$numOfComments = $commentsQuery->rowCount();
-	
-	if ($numOfComments > 0)
-		$targetUser->comments = $commentsQuery->fetchAll();
-	
-	//Format user information into json and send response
+      //	$commentsQuery = $db->prepare("SELECT Comment, Date, username, target_id, target_username, URL FROM comments WHERE target_username =:username");
+//	$commentsQuery->bindParam("username", $args['username']);
+//	$commentsQuery->execute();
+//	$numOfComments = $commentsQuery->rowCount();
+//	
+//	if ($numOfComments > 0)
+//		$targetUser->comments = $commentsQuery->fetchAll();
+//	
+//	//Format user information into json and send response
 	$jsonResponse = json_encode($targetUser);
 	$this->response->getBody()->write($jsonResponse);
 	
-
  	return $this->response;
 
 });

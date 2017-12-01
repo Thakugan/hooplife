@@ -87,7 +87,17 @@ $app->post('/registration', function ($request,$response, array $args) {
     $stmt->bindParam("password", $password);
     $stmt->bindParam("year", $year);
     $stmt->execute();
+	
+    $pdo = $this->db->prepare("SELECT * FROM users  WHERE username=:username");
+    $pdo->bindParam("username", $username);
+    $pdo->execute();
+    $info = $pdo->fetch();
+    $uid = $info['uid'];
+   // email_verification($email, $last_name, $first_name, $username, $uid);
+ 
+//    return $response->withStatus(200);
+ $data = array(‘success’ => ‘true’);
 
-    return $response->withStatus(200);
+       return $response->withJson($data, 200);
 });
 

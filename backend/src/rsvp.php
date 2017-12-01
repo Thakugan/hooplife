@@ -23,6 +23,53 @@ if (!$rsvpGame)
 });
 
 
+//show a specfic rsvp for a user
+$app->get('/rsvp/game/[{GameID}]', function(Request $request, Response $response, array $args){
+ // $pdo = $this->db->prepare("SELECT * FROM rsvp WHERE userid=:userid");
+ // $pdo = $this->db->prepare("SELECT * FROM games natural join rsvp
+ //                               WHERE GameID = :GameID");
+   $pdo = $this->db->prepare("SELECT username FROM rsvp WHERE GameID=:GameID");
+  $pdo->bindParam("GameID", $args["GameID"]);
+  $pdo->execute();
+  $rsvpGame = $pdo->fetchAll();
+if (!$rsvpGame)
+        {
+        return $response->withStatus(404);
+}
+   else {
+        return $this->response->withJson($rsvpGame);
+}
+});
+
+
+//deletes a specifice RSVP 
+$app->delete('/delete-rsvp/{username}/{GameID}', function(Request $request, Response $response, array $args){
+
+  $pdo = $this->db->prepare("DELETE FROM rsvp WHERE GameID=:GameID AND username=:username");
+  $pdo->bindParam("GameID", $args["GameID"]);
+  $pdo->bindParam("username", $args["username"]);
+  $pdo->execute();
+  $count = $pdo->rowCount();
+
+  if ($count > 0) {
+//    return $this->response->withStatus(200);
+
+	 $data = array(‘success’ => ‘true’);
+
+       return $response->withJson($data, 200);
+
+ } else {
+
+    return $this->response->withStatus(404);
+
+  }
+
+
+
+});
+
+
+
 //get a specifiv rsvp 
 $app->get('/rsvp/[{rsvpid}]', function(Request $request, Response $response, array $args){
  // $pdo = $this->db->prepare("SELECT * FROM rsvp WHERE userid=:userid");
@@ -69,7 +116,12 @@ $app->post('/rsvp', function(Request $request, Response $response, array $args){
   $pdo->bindParam("username", $username);
   $pdo->bindParam("gameid", $gameid);
   $pdo->execute();
-  return $response->withStatus(200);}
+
+//  return $response->withStatus(200);}
+ $data = array(‘success’ => ‘true’);
+
+       return $response->withJson($data, 200);
+}
 });
 
 

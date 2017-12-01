@@ -43,9 +43,9 @@ require __DIR__ . '/../src/change_password.php';
 require __DIR__ . '/../src/comments.php';
 require __DIR__ . '/../src/location-update.php';
 require __DIR__ . '/../src/delete_location.php';
+require __DIR__ . '/../src/email_validation.php';
 
-
-// Add dynamic ones below this line --------------------------------------------
+// Add dynamic ones below this line --------------------------------------------i
 
 // Run app
 $app->run();

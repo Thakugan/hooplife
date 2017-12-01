@@ -24,6 +24,9 @@ if( !isset($creator_username) || !isset($address) || !isset($des) ||
       //error message forbidden
       return $response->withStatus(403);
     }
+if (empty($picture_url)){
+    $picture_url ="null";
+}
    
    // Check if the user  exists
    $stmt = $pdo->prepare('SELECT * FROM users WHERE username=:creator_username');
@@ -67,6 +70,11 @@ if( !isset($creator_username) || !isset($address) || !isset($des) ||
     $stmt->bindParam("des", $des);
     $stmt->bindParam("creator_username", $creator_username);
     $stmt->execute();
-    return $response->withStatus(200);
+
+ //	return $response->withStatus(200);
+	$data = array(‘success’ => ‘true’);
+
+       return $response->withJson($data, 200);
+
 });
 
