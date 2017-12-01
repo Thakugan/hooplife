@@ -5,6 +5,8 @@ header('Content-type: application/json');
 use Slim\Http\Request;
 use Slim\Http\Response;
 
+//changed from using user seesion to JWT
+//comment part is commented out because I implimented it in its own route
 $app->get('/profile/{username}', function (Request $request, Response $response, array $args){
 	$db = $this->db;
 	

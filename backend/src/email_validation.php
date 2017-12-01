@@ -6,8 +6,10 @@ use \Mailgun\Mailgun;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-
-
+//Email verification works but  had a problem with setting up our site domain so that email sent for verification would say username@hooplife 
+//but we were not able to figur it out intime the program
+//the email verification works verywell with emails that are registerd as Authorized recipients on the mailgun platform 
+ 
 function email_verification($email, $last_name, $first_name, $username, $uid){
 
 	define('MAILGUN_PUBKEY','pubkey-daa521a3a3c5843b419bd9f89fc8a3b4' );

@@ -23,7 +23,9 @@ $app->get('/login',function (Request $request, Response $response, array $args) 
 });
 **/
 
+//in the begingin we were planing on using user sessions but we changed to using JWT and the front end handels that part
 
+//login as post for protecting credentials
 $app->post('/login', function (Request $request, Response $response, array $args){
     //if(session_id() == ''){
 

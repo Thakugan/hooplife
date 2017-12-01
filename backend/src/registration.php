@@ -2,6 +2,12 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 
+
+//user regisration 
+//tested and complete
+//email verification not fully functional
+//some of the codes for registration were implimented partly based another php implementation of a registration
+//this helped me make sure evverything was working properly and that I could cover the edge cases
 $app->post('/registration', function ($request,$response, array $args) {
 
     $pdo = $this->db;
@@ -25,7 +31,7 @@ $app->post('/registration', function ($request,$response, array $args) {
 
 
     //when building html form, using ajax or js to prevent non-value params
-    // checking if json is valid
+    // checkinig for empty fields
     if( !isset($username) || !isset($email)|| !isset($last_name) || !isset($year) || !isset($first_name) || !isset($plain_password) ||
       empty($username) || empty($year) || empty($first_name) || empty($last_name) || empty($email) || empty($plain_password)) {
 
@@ -33,7 +39,7 @@ $app->post('/registration', function ($request,$response, array $args) {
       return $response->withStatus(403);
     }
 
-    // Check if username alreadyy exists
+    // username duplicaiton change
    $stmt = $pdo->prepare('SELECT * FROM users WHERE username=:username');
    $stmt->bindParam("username", $username);
    $stmt->execute();
@@ -44,7 +50,7 @@ $app->post('/registration', function ($request,$response, array $args) {
    return $response->withStatus(400);
    }
 
-     //Check if email already exists
+     //email duplication check 
      $stmt = $pdo->prepare('SELECT * FROM users WHERE email=:email');
      $stmt->bindParam("email", $email);
      $stmt->execute();
@@ -55,7 +61,7 @@ $app->post('/registration', function ($request,$response, array $args) {
      return $response->withStatus(400);
      }
 
-    // Hash the password
+    // md5 used to hash the passwords
     $password = md5($plain_password);
 
     //primary key userid
@@ -79,7 +85,6 @@ $app->post('/registration', function ($request,$response, array $args) {
     VALUES(:username, :first_name, :last_name, :email, :password, 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0, 0, 0, 0, :year)"
     );
 
-    // Add the entry to the array once all the fields have been verified
     $stmt->bindParam("username", $username);
     $stmt->bindParam("first_name", $first_name);
     $stmt->bindParam("last_name", $last_name);
