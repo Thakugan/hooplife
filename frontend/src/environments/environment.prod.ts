@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url: 'http://hooplife.site/backend/public'
+  url: 'http://18.216.208.60'
 };

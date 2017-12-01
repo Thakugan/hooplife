@@ -1,11 +1,11 @@
-<div class="card mb-3">
+<div class="card mb-3" *ngIf="comment != null">
 	<div class="card-header">
-		{{comment.userName}} {{comment.date.getDate().toString() + '/' + (comment.date.getMonth() + 1).toString()}}
-		<div *ngIf="comment.showRating">
+		<a [routerLink]="'/dashboard/user/' + comment.username">{{comment.username}}</a> {{comment.Date}}
+		<div *ngIf="showRating">
 			<rating [ratingValue]="comment.rating"></rating>
 		</div>
 	</div>
 	<div class="card-body">
-		<p>{{comment.commentText}}</p>
+		<p>{{comment.Comment}}</p>
 	</div>
 </div>

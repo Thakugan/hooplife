@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+
 import { User } from '../../_models/user'
 import { Comment } from '../../_models/comment';
+
+import { ProfileService } from '../../_services/profile.service';
 
 @Component({
   	selector: 'app-user-public',
@@ -10,48 +15,40 @@ import { Comment } from '../../_models/comment';
 
 export class UserPublicComponent{
 
-	private displayComments: boolean = false;
-	private currentUser: string = "Steph Curry"
-	private hasCommented: boolean = false;
-	private hasRated: boolean = false;
-	private newComment: Comment = new Comment();
+	displayComments: boolean = true;
+	currentUser: string;
+	hasCommented: boolean = false;
+	hasRated: boolean = false;
+	newComment: Comment = new Comment();
 
-	public user: User;
+	@Input() public user: User;
+  @Input() comments: Comment[];
 
-	constructor(){
+	constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private profileService: ProfileService,
+    private snackBar: MatSnackBar
+  ){ }
 
-		this.user = {
-			username: "69xB-Ballerx69",
-			firstName: "Chris",
-			lastName: "Ragsdale",
-			rating: 5,
-			year: "Junior",
-			rank: "Badass",
-			gamesPlayed: 385,
-			wins: 384,
-			losses: 1,
-			email: "Cragsdale@smu.edu",
-			comments: [
-				{ userName: 'Lebron James', date: new Date(), rating: 5, commentText: 'Way better than me. I love him.', showRating: true },
-				{ userName: 'Michael Jordan', date: new Date(), rating: 5, commentText: 'This boi can play', showRating: false },
-				{ userName: 'Shaq', date: new Date(), rating: 5, commentText: 'I want to father his children', showRating: true }
-			],
-			dateCreated: new Date()
-		}
+  ngOnInit() {
+    this.currentUser = this.profileService.getCurrentUser();
+  }
 
-	}
+	addComment() {
+    const user = this.route.snapshot.paramMap.get('username');
+    this.profileService.createComment(this.currentUser, this.newComment.Comment, 'user', user, this.newComment.rating).subscribe(
+      res => {
+        this.router.navigate(['/dashboard/user/' + user])
+      },
+      err => {
+        this.snackBar.open('Comment submition failed, please try again.', '', { duration: 5000 });
+      }
+    );
+  }
 
-	private addComment() {
-      this.newComment.userName = this.currentUser;
-      this.newComment.date = new Date();
-
-      this.user.comments.push(this.newComment);
-      this.newComment = new Comment();
-      this.hasCommented = true;
-    }
-
-    private processRating(num: number){
-      this.newComment.rating = num;
-      this.hasRated = true;
-    }
+  onRated(num: number){
+    this.newComment.rating = num;
+    this.hasRated = true;
+  }
 }

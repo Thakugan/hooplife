@@ -1,7 +1,6 @@
 export class Comment {
-	userName: string;
-	date: Date;
+	username: string;
+	Date: Date;
 	rating: number;
-	commentText: string;
-	showRating: boolean;
+	Comment: string;
 }
