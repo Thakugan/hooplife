@@ -27,6 +27,7 @@ export class GamesListPageComponent implements OnInit {
 
 	ngOnInit() {
     this.getAllGames();
+    this.getAttendingGames();
 	}
 
   getAllGames() {

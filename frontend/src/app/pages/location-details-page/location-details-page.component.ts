@@ -63,7 +63,7 @@ export class LocationDetailsPageComponent implements OnInit {
   addComment(){
     const loc = this.route.snapshot.paramMap.get('locID');
     const currentUser = this.profileService.getCurrentUser();
-    this.profileService.createComment(currentUser, this.newComment.Comment, 'location', loc, 0).subscribe(
+    this.profileService.createComment(currentUser, this.newComment.Comment, 'location', loc, this.newComment.rating).subscribe(
       res => {
         this.router.navigate(['/dashboard/location/' + loc])
       },

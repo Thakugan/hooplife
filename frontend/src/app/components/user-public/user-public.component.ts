@@ -49,7 +49,6 @@ export class UserPublicComponent{
 
   onRated(num: number){
     this.newComment.rating = num;
-    alert(this.newComment.rating);
     this.hasRated = true;
   }
 }
