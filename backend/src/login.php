@@ -1,7 +1,7 @@
 <?php
 
 header('Content-type: application/json');
-
+use \Firebase\JWT\JWT;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -23,7 +23,9 @@ $app->get('/login',function (Request $request, Response $response, array $args) 
 });
 **/
 
+//in the begingin we were planing on using user sessions but we changed to using JWT and the front end handels that part
 
+//login as post for protecting credentials
 $app->post('/login', function (Request $request, Response $response, array $args){
     //if(session_id() == ''){
 
@@ -50,15 +52,21 @@ $app->post('/login', function (Request $request, Response $response, array $args
 	return $response->withStatus(404);
 }
    else {
-	session_start();
-	return $response->withStatus(200);
+	//session_start();
+	  $payload = [  'username' => $username,    ];
+          $token = JWT::encode($payload, $_SERVER['SESSION_PASS']);
+          $json = json_encode(array( "jwt" => $token  ));
+          $stmt = $pdo->prepare('UPDATE users SET last_login=CURRENT_TIMESTAMP WHERE username=:username');
+          $stmt->bindParam("username", $username);
+          $stmt->execute();
+          return $response->withJson($json, 200);
+	//return $response->withStatus(200);
 }
 
 
    
 
 });
-
 
 
 
